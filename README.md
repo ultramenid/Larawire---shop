@@ -29,3 +29,6 @@ Guide from  [devmarketer.io](https://devmarketer.io/learn/setup-laravel-project-
 -cart
 ![Screenshot](Screenshot_4.jpg)
 
+-crud
+![Screenshot](Screenshot_2.jpg)
+
