@@ -5,9 +5,9 @@
 
   
 
-- [Laravel](https://laravel.com/).
+- [Laravel](https://laravel.com/)
 
-- [Laravel-livewire]((https://laravel-livewire.com/).
+- [Laravel-livewire](https://laravel-livewire.com/)
 
 - [Turbolinks](https://github.com/turbolinks/turbolinks)
 
@@ -23,4 +23,9 @@ Guide from  [devmarketer.io](https://devmarketer.io/learn/setup-laravel-project-
 
 ## Screenshot
 
+-products
 ![Screenshot](Screenshot_1.jpg)
+
+-cart
+![Screenshot](Screenshot_4.jpg)
+
