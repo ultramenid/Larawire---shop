@@ -3,6 +3,10 @@
 ## Tech stack
 
 
+ User role = [
+  'admin' => 1,
+  'user' => 2
+ ]
   
 
 - [Laravel](https://laravel.com/)
