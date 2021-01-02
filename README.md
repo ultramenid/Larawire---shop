@@ -17,7 +17,7 @@
 
 - [TailwindCss](https://tailwindcss.com/)
 
-
+- [AlpineJS](https://github.com/alpinejs/alpine)
 
   
 
