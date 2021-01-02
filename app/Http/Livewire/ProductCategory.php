@@ -13,6 +13,13 @@ class ProductCategory extends Component
     public $isCreating, $isUpdate ;
     public $name, $uName, $uId;
     public $no = 1;
+    public $readyToLoad = false;
+
+
+    public function loadPosts()
+    {
+        $this->readyToLoad = true;
+    }
 
     //modal insert
     public function create(){
@@ -91,7 +98,7 @@ class ProductCategory extends Component
     public function render()
     {
         $data = [
-            'category' => DB::table('products_category')->orderBy('id', 'desc')->paginate(10)
+            'category' => $this->readyToLoad ? DB::table('products_category')->orderBy('id', 'desc')->paginate(10) : []
         ];
         return view('livewire.product-category',$data);
     }

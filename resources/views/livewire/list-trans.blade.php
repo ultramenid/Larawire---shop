@@ -21,7 +21,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
+                <tbody class="bg-white divide-y divide-gray-200" wire:init='loadPosts'>
                     @forelse ($lists as $item)
                     <tr>
                         <td class="px-4 py-4 text-gray-500 text-center ">
@@ -53,7 +53,9 @@
         </div>
 
     </div>
+    @if ($lists)
     <div class="py-3">
         {{ $lists->links('livewire.pagination') }}
     </div>
+    @endif
 </div>

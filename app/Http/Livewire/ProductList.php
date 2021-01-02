@@ -17,6 +17,7 @@ class ProductList extends Component
     public $photo, $name, $price, $quantity, $category, $discount= 0 ;
     public $uphoto, $uName, $uPrice, $uQuantity, $uCategory, $uId, $uDiscount;
     public $search ;
+    public $readyToLoad = false;
 
     //realtime validation upload
     public function updatedPhoto($photo)
@@ -30,6 +31,10 @@ class ProductList extends Component
         ]);
     }
 
+    public function loadPosts()
+    {
+        $this->readyToLoad = true;
+    }
 
     //open modal create
     public function create(){
@@ -133,9 +138,10 @@ class ProductList extends Component
         $sc = '%'. $this->search .'%';
         $data= [
             'categories' => DB::table('products_category')->get(),
-            'products' => DB::table('products')
+            'products' => $this->readyToLoad ? DB::table('products')
             ->where('name', 'like', $sc)
             ->orderBy('id', 'desc')->paginate(7)
+            : []
         ];
         return view('livewire.product-list', $data);
     }

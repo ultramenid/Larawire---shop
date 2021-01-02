@@ -9,6 +9,7 @@ use Livewire\Component;
 class ChooseComponent extends Component
 {
     public $search;
+    public $readyToLoad = false;
 
     public function addtocart($id, $category_id, $price, $discount){
         DB::table('carts')->insert([
@@ -28,7 +29,10 @@ class ChooseComponent extends Component
         ->delete();
 
         $this->emit('cartAdded');
+    }
 
+    public function loadFirst(){
+        $this->readyToLoad = true;
     }
 
 
@@ -37,10 +41,12 @@ class ChooseComponent extends Component
         // $sc = '%'. $this->search .'%';
         $data= [
             // 'alreadyAdded' => DB::table('carts')
-            'products' => DB::table('products')
+            'products' => $this->readyToLoad
+            ? DB::table('products')
             ->join('products_category', 'products.category_id', '=' , 'products_category.id')
             ->select('products.*','products_category.name as category_name')
             ->orderBy('id', 'desc')->paginate(10)
+            : []
         ];
         return view('livewire.choose-component', $data);
     }
