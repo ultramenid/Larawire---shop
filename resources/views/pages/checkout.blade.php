@@ -8,5 +8,7 @@
 
 <livewire:checkout />
 
+</div>
+
 
 @endsection

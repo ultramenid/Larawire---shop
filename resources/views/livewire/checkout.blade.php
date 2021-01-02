@@ -12,10 +12,10 @@
         </div>
         <div class="flex mt-10 mb-5">
           <h3 class="font-semibold text-gray-600 text-xs uppercase w-2/5">Product Details</h3>
-          <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Quantity</h3>
-          <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Price</h3>
-          <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Discount</h3>
-          <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Total</h3>
+          <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">Quantity</h3>
+          <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">Price</h3>
+          <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">Discount</h3>
+          <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">Total</h3>
         </div>
         @foreach ($carts as $cart)
         <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">

@@ -10,10 +10,10 @@
         <meta name="turbolinks-cache-control" content="no-cache">
         <title>{{ $title }}</title>
 
-        {{-- <script
+        <script
         src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
         defer
-      ></script> --}}
+      ></script>
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{asset('css/app.css')}}" defer >

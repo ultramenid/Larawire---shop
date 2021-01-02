@@ -11,5 +11,6 @@
         @else
             <livewire:list-trans />
         @endif
+    </div>
 
 @endsection
