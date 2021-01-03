@@ -13,7 +13,7 @@ class ProductList extends Component
 {
     use WithFileUploads;
     use WithPagination;
-    public $isCreating, $isUpdate;
+    public $isCreating, $isUpdate ;
     public $photo, $name, $price, $quantity, $category, $discount= 0 ;
     public $uphoto, $uName, $uPrice, $uQuantity, $uCategory, $uId, $uDiscount;
     public $search ;
@@ -69,7 +69,7 @@ class ProductList extends Component
         $this->uId = $data->id;
         $this->uPrice = $data->price;
         $this->uQuantity = $data->quantity;
-        $this->uphoto = $data->photo;
+        $this->uphoto = $data->photo ;
         $this->uCategory = $data->category_id;
         $this->uDiscount = $data->discount;
         $this->update();
@@ -112,6 +112,7 @@ class ProductList extends Component
             $potoimg = $this->uphoto;
         }else{
             $potoimg = $this->photo->store('public/photos');
+            Storage::delete($this->uphoto);
         }
         DB::table('products')
             ->where('id', $id)
@@ -124,8 +125,6 @@ class ProductList extends Component
             'photo' => $potoimg,
             'updated_at' => Carbon::now()
             ]);
-            Storage::delete($this->uphoto);
-
         $this->closeUpdate();
     }
 

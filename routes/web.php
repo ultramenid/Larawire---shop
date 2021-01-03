@@ -1,11 +1,5 @@
 <?php
 
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DiscountsController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ProductCategoryController;
-use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,15 +13,55 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+//route checking session
 Route::group(['middleware' => 'cekSession'], function () {
-    Route::get('/dashboard', [DashboardController::class, 'index']);
-    Route::get('/productslist', [ProductsController::class, 'index']);
-    Route::get('/productscategory', [ProductCategoryController::class, 'index']);
-    Route::get('/checkout', [CheckoutController::class, 'index']);
+    //route dashboard
+    Route::get('/dashboard', function () {
+        return view('pages.dashboard', [
+            'title' => 'Welcome Page',
+            'tabs' => 'dashboard'
+        ]);
+    });
+
+    //route list products
+    Route::get('/productslist', function () {
+        return view('pages.products', [
+            'title' => 'Products Page',
+            'tabs' => 'products',
+            'sub_tabs' => 'list'
+        ]);
+    });
+
+    //route list category products
+    Route::get('/productscategory', function () {
+        return view('pages.categoryproduct', [
+            'title' => 'Products Category',
+            'tabs' => 'products',
+            'sub_tabs' => 'category'
+        ]);
+    });
+
+    //route checkout cart
+    Route::get('/checkout', function () {
+        return view('pages.checkout', [
+            'title' => 'Checkout Page',
+            'tabs' => 'none'
+        ]);
+    });
 });
 
+//route hase session
 Route::group(['middleware' => 'hasSession'], function () {
-    Route::get('/', [LoginController::class, 'index']);
+    //route home
+    Route::get('/', function () {
+        return view('pages.login',[
+            'title' => 'Login Page'
+        ]);
+    });
 });
-Route::get('/logout', [LoginController::class, 'logout']);
+
+//route logout
+Route::get('/logout', function () {
+    session()->flush();
+    return redirect('/');
+});

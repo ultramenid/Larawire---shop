@@ -8,9 +8,8 @@
 
     {{-- @if ($isCreating)
     @include('livewire.etcList.createProducts')
-    @elseif($isUpdate)
-        @include('livewire.etcList.updateProducts')
-    @endif --}}
+    --}}
+
 
     <div x-data="{ open: @entangle('isCreating') }">
         {{-- <button @click="open = true">Show More...</button> --}}
@@ -22,11 +21,15 @@
         </div>
     </div>
 
-    <div x-data="{ edit: @entangle('isUpdate') }">
+    {{-- <div x-data="{ edit: @entangle('isUpdate') }">
         <div x-show="edit" @click.away="edit = false">
             @include('livewire.etcList.updateProducts')
         </div>
-    </div>
+    </div> --}}
+
+    @if($isUpdate)
+        @include('livewire.etcList.updateProducts')
+    @endif
 
 
     <div class="text-right">
