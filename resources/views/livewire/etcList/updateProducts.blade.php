@@ -36,7 +36,7 @@
                                 <option value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach
                             </select>
-                            @error('category') <span class="text-red-500">{{ $message }}</span>@enderror
+                            @error('uCategory') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
                         <div class="mb-3">
                             <label for="formName" class="block text-gray-700 text-sm font-bold mb-2">Discount %</label>
