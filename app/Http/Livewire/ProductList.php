@@ -126,6 +126,8 @@ class ProductList extends Component
             'updated_at' => Carbon::now()
             ]);
         $this->closeUpdate();
+
+        DB::table('carts')->where('product_id', $id)->delete();
     }
 
     //deleting from db
