@@ -20,8 +20,10 @@ class Products extends Migration
             $table->integer('quantity');
             $table->text('photo');
             $table->integer('discount');
-            $table->integer('category_id');
+            $table->unsignedBigInteger('category_id');
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('products_category');
         });
     }
 

@@ -15,13 +15,19 @@ class Carts extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->integer('product_id');
-            $table->integer('user_id');
-            $table->integer('category_id');
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('category_id');
             $table->integer('quantity');
             $table->integer('total');
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('products_category');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('product_id')->references('id')->on('products');
+
         });
+
     }
 
     /**

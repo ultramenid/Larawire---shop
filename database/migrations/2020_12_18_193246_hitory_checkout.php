@@ -15,9 +15,11 @@ class HitoryCheckout extends Migration
     {
         Schema::create('history_checkout', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->integer('total');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
