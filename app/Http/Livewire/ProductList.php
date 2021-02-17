@@ -13,12 +13,15 @@ class ProductList extends Component
 {
     use WithFileUploads;
     use WithPagination;
-    public $isCreating, $isUpdate ;
+    public $isCreating = false , $isUpdate = false;
     public $photo, $name, $price, $quantity, $category, $discount= 0 ;
     public $uphoto, $uName, $uPrice, $uQuantity, $uCategory, $uId, $uDiscount;
-    public $search ;
+    public $search = '' ;
     public $readyToLoad = false;
-
+     public function updatingSearch()
+    {
+        $this->resetPage();
+    }
     //realtime validation upload
     public function updatedPhoto($photo)
     {
@@ -135,15 +138,23 @@ class ProductList extends Component
         DB::table('products')->where('id', $id)->delete();
 
     }
+
+    public function productsData(){
+        $sc = '%' . $this->search . '%';
+        try {
+           return DB::table('products')
+                ->where('name', 'like', $sc)
+                ->orderBy('id', 'desc')->paginate(5);
+        } catch (\Throwable $th) {
+            return [];
+        }
+    }
     public function render()
     {
-        $sc = '%'. $this->search .'%';
+
         $data= [
             'categories' => DB::table('products_category')->get(),
-            'products' => $this->readyToLoad ? DB::table('products')
-            ->where('name', 'like', $sc)
-            ->orderBy('id', 'desc')->paginate(7)
-            : []
+            'products' => $this->readyToLoad ? $this->productsData() : []
         ];
         return view('livewire.product-list', $data);
     }

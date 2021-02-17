@@ -1,16 +1,6 @@
 <div class="sm:col-span-10 col-span-12 space-y-1">
     <h1 class="text-gray-900 font-bold text-2xl mb-2">Product list</h1>
 
-
-    {{-- <button wire:click="create()" class="border border-gray-300 hover:border-gray-600 text-gray-500 hover:text-white hover:bg-black w-20 px-1 text-center rounded focus:outline-none">
-        Create
-    </button> --}}
-
-    {{-- @if ($isCreating)
-    @include('livewire.etcList.createProducts')
-    --}}
-
-
     <div x-data="{ open: @entangle('isCreating') }">
         {{-- <button @click="open = true">Show More...</button> --}}
         <button @click="open = true" class="border border-gray-300 hover:border-gray-600 text-gray-500 hover:text-gray-900 w-20 px-1 text-center rounded">
@@ -26,16 +16,15 @@
             @include('livewire.etcList.updateProducts')
         </div>
     </div>
-
+<!--
     {{-- @if($isUpdate)
         @include('livewire.etcList.updateProducts')
-    @endif --}}
+    @endif --}} -->
 
 
     <div class="text-right">
         <label class="text-gray-900 mr-2 ">Search </label>
         <input  type="text" class=" appearance-none border rounded sm:w-1/4 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="price" wire:model.debounce.300ms="search">
-
     </div>
 
 

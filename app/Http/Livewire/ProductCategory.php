@@ -10,7 +10,7 @@ use Livewire\WithPagination;
 class ProductCategory extends Component
 {
     use WithPagination;
-    public $isCreating, $isUpdate ;
+    public $isCreating = false, $isUpdate = false;
     public $name, $uName, $uId;
     public $no = 1;
     public $readyToLoad = false;
@@ -95,10 +95,18 @@ class ProductCategory extends Component
     public function deleting($id){
         DB::table('products_category')->where('id', $id)->delete();
     }
+
+    public function categoryData(){
+        try {
+          return  DB::table('products_category')->orderBy('id', 'desc')->paginate(10);
+        } catch (\Throwable $th) {
+          return [];
+        }
+    }
     public function render()
     {
         $data = [
-            'category' => $this->readyToLoad ? DB::table('products_category')->orderBy('id', 'desc')->paginate(10) : []
+            'category' => $this->readyToLoad ? $this->categoryData()  : []
         ];
         return view('livewire.product-category',$data);
     }

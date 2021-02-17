@@ -37,7 +37,6 @@ class Checkout extends Component
             'total' => $btotal
         ]);
         $this->emit('cartAdded');
-
     }
 
     public function minQuantity($id, $category_id, $price, $discount, $quantity){

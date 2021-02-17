@@ -7,8 +7,6 @@
     @if (session('role_id') === 1)
     <a href="/productslist" class="sm:text-md text-sm  @if($tabs == 'products') text-gray-900  border-b-2 hover:text-black px-0.5  border-black py-4 @else text-gray-500 px-0.5 py-4 @endif ">Products </a>
     @endif
-
-{{-- <a href="/settings" class="sm:text-md text-sm  @if($tabs) @if($tabs == 'settings') text-gray-900  border-b-2 hover:text-black px-0.5  border-black py-4 @else text-gray-500 px-0.5 py-4 @endif  @endif ">Settings </a> --}}
 </div>
 
 <hr>
