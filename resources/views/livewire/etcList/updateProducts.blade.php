@@ -47,7 +47,7 @@
                             <div class="flex items-center justify-center py-16 border border-dashed border-gray-400 rounded">
                                 <label class="cursor-pointer">
                                     @if (! $photo )
-                                    <img src="{{Storage::url($uphoto)}}" alt="" class="h-32 w-32 rounded ">
+                                    <img src="{{ url('/storage/'.$uphoto) }}" alt="" class="h-32 w-32 rounded ">
                                     @else
                                     <img src="{{$photo->temporaryUrl()}}" alt="" class="h-32 w-32 rounded ">
                                     @endif

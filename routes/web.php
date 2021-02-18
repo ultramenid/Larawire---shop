@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,7 @@ Route::group(['middleware' => 'cekSession'], function () {
             'sub_tabs' => 'list'
         ]);
     });
+
 
     //route list category products
     Route::get('/productscategory', function () {

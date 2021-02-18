@@ -88,7 +88,7 @@ class ProductList extends Component
             'category' => 'required'
         ]);
 
-        $name = $this->photo->store('public/photos');
+        $name = $this->photo->store('images', 'public');
 
         DB::table('products')->insert([
             'name' => $this->name,
@@ -114,7 +114,7 @@ class ProductList extends Component
         if(!$this->photo){
             $potoimg = $this->uphoto;
         }else{
-            $potoimg = $this->photo->store('public/photos');
+            $potoimg = $this->photo->store('images', 'public');
             Storage::delete($this->uphoto);
         }
         DB::table('products')

@@ -19,28 +19,17 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 
-    # Turn on the module.
-    ExpiresActive on
-    # Set the default expiry times.
-        # Images
-        ExpiresByType image/jpeg "access plus 1 month"
-        ExpiresByType image/gif "access plus 1 month"
-        ExpiresByType image/png "access plus 1 month"
-        ExpiresByType image/webp "access plus 1 month"
-        ExpiresByType image/svg+xml "access plus 1 month"
-        ExpiresByType image/x-icon "access plus 1 month"
 
-        # Video
-        ExpiresByType video/mp4 "access plus 1 month"
-        ExpiresByType video/mpeg "access plus 1 month"
+    <FilesMatch ".(jpg|jpeg|png|gif|swf)$">
+        <IfModule mod_headers.c>
+            Header set Cache-Control "max-age=604800, public"
+        </IfModule>
+    </FilesMatch>
 
-        # CSS, JavaScript
-        ExpiresByType text/css "access plus 1 week"
-        ExpiresByType text/javascript "access plus 1 month"
-        ExpiresByType application/javascript "access plus 1 month"
 
-        # Others
-        ExpiresByType application/pdf "access plus 1 month"
-        ExpiresByType application/x-shockwave-flash "access plus 1 month"
-    # end set
+    <FilesMatch ".(xml|txt|css|js)$">
+        <IfModule mod_headers.c>
+            Header set Cache-Control "max-age=604800, proxy-revalidate"
+        </IfModule>
+    </FilesMatch>
 </IfModule>
