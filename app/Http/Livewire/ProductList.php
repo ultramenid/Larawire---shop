@@ -13,9 +13,10 @@ class ProductList extends Component
 {
     use WithFileUploads;
     use WithPagination;
-    public $isCreating = false , $isUpdate = false;
+    public $isCreating = false , $isUpdate = false, $deleter = false;
     public $photo, $name, $price, $quantity, $category, $discount= 0 ;
     public $uphoto, $uName, $uPrice, $uQuantity, $uCategory, $uId, $uDiscount;
+    public $deleteName, $deleteID;
     public $search = '' ;
     public $readyToLoad = false;
      public function updatingSearch()
@@ -133,11 +134,23 @@ class ProductList extends Component
         DB::table('carts')->where('product_id', $id)->delete();
     }
 
-    //deleting from db
-    public function deleting($id){
-        DB::table('products')->where('id', $id)->delete();
 
+    public function delete($id){
+        $dataDelete = DB::table('products')->where('id', $id)->first();
+        $this->deleteName = $dataDelete->name;
+        $this->deleteID = $dataDelete->id;
+        $this->deleter = true;
     }
+
+    public function closeDelete(){
+        $this->deleter = false;
+    }
+
+    public function deleting($deleteID){
+        DB::table('products')->where('id', $deleteID)->delete();
+        $this->closeDelete();
+    }
+
 
     public function productsData(){
         $sc = '%' . $this->search . '%';
@@ -153,7 +166,7 @@ class ProductList extends Component
     {
 
         $data= [
-            'categories' => DB::table('products_category')->get(),
+            'categories' => $this->readyToLoad ? DB::table('products_category')->get() : [],
             'products' => $this->readyToLoad ? $this->productsData() : []
         ];
         return view('livewire.product-list', $data);

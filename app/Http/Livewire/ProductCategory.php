@@ -10,8 +10,9 @@ use Livewire\WithPagination;
 class ProductCategory extends Component
 {
     use WithPagination;
-    public $isCreating = false, $isUpdate = false;
+    public $isCreating = false, $isUpdate = false, $deleter= false;
     public $name, $uName, $uId;
+    public $deleteName, $deleteID;
     public $no = 1;
     public $readyToLoad = false;
 
@@ -92,10 +93,22 @@ class ProductCategory extends Component
     }
 
     // delete from db
-    public function deleting($id){
-        DB::table('products_category')->where('id', $id)->delete();
+    public function delete($id){
+        $dataDelete = DB::table('products_category')->where('id', $id)->first();
+        $this->deleteID = $dataDelete->id;
+        $this->deleteName = $dataDelete->name;
+
+        $this->deleter = true;
     }
 
+    public function deleting($deleteID){
+        DB::table('products_category')->where('id', $deleteID)->delete();
+        $this->closeDelete();
+    }
+
+    public function closeDelete(){
+        $this->deleter = false;
+    }
     public function categoryData(){
         try {
           return  DB::table('products_category')->orderBy('id', 'desc')->paginate(10);
