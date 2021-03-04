@@ -1,5 +1,5 @@
 <div>
-    <h1 class="text-3xl font-bold sm:pt-8 pt-4">Last transaction</h1>
+    <h1 class="text-3xl font-bold sm:pt-8 pt-4 dark:text-white">Last transaction</h1>
     <div class="flex flex-col py-5">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="py-2 align-middle inline-block w-full sm:px-6 lg:px-8">

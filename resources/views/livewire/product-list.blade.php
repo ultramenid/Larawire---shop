@@ -1,9 +1,8 @@
 <div class="sm:col-span-10 col-span-12 space-y-1">
-    <h1 class="text-gray-900 font-bold text-2xl mb-2">Product list</h1>
-
+    <h1 class="text-gray-900 font-bold text-2xl mb-2 dark:text-gray-100">Product list</h1>
     <div x-data="{ open: @entangle('isCreating') }">
         {{-- <button @click="open = true">Show More...</button> --}}
-        <button @click="open = true" class="border border-gray-300 hover:border-gray-600 text-gray-500 hover:text-gray-900 w-20 px-1 text-center rounded">
+        <button @click="open = true" class="border border-gray-300 hover:border-gray-600 text-gray-500 dark:text-gray-200 hover:text-gray-900 w-20 px-1 text-center rounded">
             Create
         </button>
         <div x-show="open" @click.away="open = false" style="display: none;">
@@ -17,19 +16,10 @@
         </div>
     </div>
 
-
-
-    @if($deleter)
-    @include('livewire.etcList.deleteProducts')
-    @endif
-
-
     <div class="text-right">
-        <label class="text-gray-900 mr-2 ">Search </label>
+        <label class="text-gray-600 dark:text-gray-300 mr-2 text-sm">Search </label>
         <input type="text" class=" appearance-none border rounded sm:w-1/4 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="price" wire:model.debounce.300ms="search">
     </div>
-
-
     <div class="flex flex-col py-5">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block w-full sm:px-6 lg:px-8">
@@ -102,10 +92,7 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                         </svg>
                                     </button>
-
-
                                 </td>
-
                             </tr>
                             @empty
                             <tr>
@@ -113,15 +100,12 @@
                                     No data found
                                 </td>
                             </tr>
-
                             @endforelse
                         </tbody>
                     </table>
                 </div>
             </div>
-
         </div>
-
     </div>
     @if ($products)
     {{ $products->links('livewire.pagination') }}

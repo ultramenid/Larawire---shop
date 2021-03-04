@@ -65,19 +65,19 @@
         </div>
 
         <div id="summary" class="w-1/4 px-8 py-10">
-            <h1 class="font-semibold text-2xl border-b pb-8">Order Summary</h1>
+            <h1 class="font-semibold text-2xl border-b pb-8 dark:text-white">Order Summary</h1>
             <div class="flex justify-between mt-10 mb-5">
-                <span class="font-semibold text-sm uppercase">Items </span>
-                <span class="font-semibold text-sm">{{$count}}</span>
+                <span class="font-semibold text-sm uppercase dark:text-white">Items </span>
+                <span class="font-semibold text-sm dark:text-white">{{$count}}</span>
             </div>
 
             <div class="border-t mt-8">
-                <div class="flex font-semibold justify-between py-6 text-sm uppercase">
+                <div class="flex font-semibold justify-between py-6 text-sm uppercase dark:text-white">
                     <span>Total cost</span>
                     <span wire:model='grandtotal'>Rp {{number_format($sumTotal,0, ',' , '.')}}</span>
                 </div>
                 @unless (!$count)
-                <button wire:click='ceckFout' class=" rounded bg-black font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Checkout</button>
+                <button wire:click='ceckFout' class=" rounded bg-black dark:bg-white dark:text-black dark:hover:bg-indigo-600 dark:hover:text-white font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Checkout</button>
                 @endunless
             </div>
         </div>

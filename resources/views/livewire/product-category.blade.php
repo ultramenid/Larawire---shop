@@ -1,20 +1,9 @@
 <div class="sm:col-span-10 col-span-12 space-y-3">
-    <h1 class="text-gray-900 font-bold text-2xl">Product Category</h1>
+    <h1 class="text-gray-900 font-bold text-2xl dark:text-white">Product Category</h1>
 
-    {{-- <button wire:click="create()" class="border border-gray-300 hover:border-gray-600 text-gray-500 hover:text-white hover:bg-black w-20 px-1 text-center rounded focus:outline-none">
-        Create
-    </button>
-
-    @if ($isCreating)
-        @include('livewire.etcCategory.createCategory')
-    @elseif($isUpdate)
-        @include('livewire.etcCategory.UpdateCategory')
-
-    @endif --}}
 
     <div x-data="{ open: @entangle('isCreating')}">
-        {{-- <button @click="open = true">Show More...</button> --}}
-        <button @click="open = true" class="border border-gray-300 hover:border-gray-600 text-gray-500 hover:text-gray-900 w-20 px-1 text-center rounded">
+        <button @click="open = true" class="border border-gray-300 hover:border-gray-600 text-gray-500 dark:text-gray-200 hover:text-gray-900 w-20 px-1 text-center rounded">
             Create
         </button>
         <div x-show="open" @click.away="open = false" style="display: none;">
@@ -92,7 +81,7 @@
                             </tr>
                             @empty
                             <tr>
-                                <td class="whitespace-nowrap text-sm text-gray-500 px-6 py-4">
+                                <td colspan="3" class="whitespace-nowrap text-sm text-gray-500 px-6 py-4">
                                     No data found
                                 </td>
                             </tr>

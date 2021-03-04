@@ -7,14 +7,13 @@ use Livewire\Component;
 
 class LoginComponent extends Component
 {
-    public $username, $password;
+    public string $username = '', $password = '';
 
     public function login(){
         $this->validate([
             'username' => 'required',
             'password' => 'required'
         ]);
-
         //log in logic
         if($this->isValidUser()){
            session([
@@ -22,11 +21,9 @@ class LoginComponent extends Component
                'role_id'=> $this->isValidUser()->role_id
            ]);
            redirect('/dashboard');
-
         }else{
             session()->flash('message', 'Username & Password not valid.');
         }
-
     }
 
     //check user is registered
@@ -36,8 +33,7 @@ class LoginComponent extends Component
         ->where('password', $this->password)
         ->first();
     }
-    public function render()
-    {
+    public function render(){
         return view('livewire.login-component');
     }
 }
