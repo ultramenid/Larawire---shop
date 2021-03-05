@@ -13,7 +13,7 @@ class ProductList extends Component
 {
     use WithFileUploads;
     use WithPagination;
-    public $isCreating = false , $isUpdate = false, $deleter = false;
+    public $isCreating = false , $isUpdate = false, $deleter = false, $isDelete = false;
     public $photo, $name, $price, $quantity, $category, $discount= 0 ;
     public $uphoto, $uName, $uPrice, $uQuantity, $uCategory, $uId, $uDiscount;
     public $deleteName, $deleteID;
@@ -48,7 +48,7 @@ class ProductList extends Component
         $this->isUpdate = true;
     }
     public function closeUpdate(){
-        $this->isUpdate= false;
+        $this->isUpdate = false;
     }
 
     //close modal creae
