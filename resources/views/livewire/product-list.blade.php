@@ -1,8 +1,8 @@
 <div class="sm:col-span-10 col-span-12 space-y-1">
 <h1 class="text-gray-900 font-bold text-2xl mb-2 dark:text-gray-100">Product list</h1>
 
-    <div class=" sm:text-left text-center">
-        <button wire:loading.remove wire:target='create' wire:click='create' class="focus:outline-none border border-gray-300 hover:border-gray-600 text-gray-500  hover:text-gray-900 w-20  text-center rounded">
+    <div class="sm:text-left text-center">
+        <button wire:loading.remove wire:target='create' wire:click='create' class="focus:outline-none border border-gray-300 hover:border-gray-600 text-gray-500  hover:text-gray-900  text-center rounded md:w-20 w-full dark:text-gray-400 dark:border-gray-400">
             Add
         </button>
         <button wire:loading wire:target='create' class="focus:outline-none border border-gray-300 hover:border-gray-600 text-gray-500  hover:text-gray-900 w-20  text-center rounded">
@@ -22,8 +22,10 @@
 
         <div class="text-right">
             <label class="text-gray-600 dark:text-gray-300 mr-2 text-sm">Search </label>
-            <input type="text" class=" appearance-none border rounded sm:w-1/4 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="price" wire:model.debounce.300ms="search">
+            <input type="text" class="dark:bg-gray-700 dark:border-gray-700 dark:text-gray-300 appearance-none border rounded lg:w-1/4 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="price" wire:model.debounce.300ms="search">
         </div>
+
+
     <div class="flex flex-col py-5 ">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block w-full sm:px-6 lg:px-8">
@@ -31,19 +33,19 @@
                     <table class="w-full divide-y divide-gray-200 ">
                         <thead>
                             <tr>
-                                <th class="px-4 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-6/12">
+                                <th wire:click='sortingField("name")' class="px-4 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer w-6/12 ">
                                     Name
                                 </th>
-                                <th class="px-4 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/12">
+                                <th wire:click='sortingField("price")' class="px-4 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer w-1/12">
                                     Price
                                 </th>
-                                <th class="px-4 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/12">
+                                <th wire:click='sortingField("quantity")' class="px-4 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer w-1/12">
                                     Quantity
                                 </th>
-                                <th class="px-4 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/12">
+                                <th wire:click='sortingField("discount")' class="px-4 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer w-1/12">
                                     Discount
                                 </th>
-                                <th class="px-4 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-2/12">
+                                <th class="px-4 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider  w-2/12">
                                     Image
                                 </th>
                                 <th class="px-4 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider w-1/12">

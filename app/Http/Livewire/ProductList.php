@@ -19,6 +19,14 @@ class ProductList extends Component
     public $deleteName, $deleteID;
     public $search = '' ;
     public $readyToLoad = false;
+    public $dataField = 'name';
+    public $dataOrder= 'asc' ;
+
+    public function sortingField($field){
+        $this->dataField = $field;
+        $this->dataOrder = $this->dataOrder == 'asc' ? 'desc' : 'asc';
+    }
+
      public function updatingSearch()
     {
         $this->resetPage();
@@ -157,11 +165,13 @@ class ProductList extends Component
         try {
            return DB::table('products')
                 ->where('name', 'like', $sc)
-                ->orderBy('id', 'desc')->paginate(5);
+                ->orderBy($this->dataField, $this->dataOrder)
+                ->paginate(5);
         } catch (\Throwable $th) {
-            return [];
+            return $th;
         }
     }
+
     public function render()
     {
 
