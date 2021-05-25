@@ -15,8 +15,8 @@
 
         <ul class="menu border-b md:border-none flex justify-end list-reset m-0 w-full md:w-auto">
             <!-- Theme toggler -->
-            <li class="flex">
-                <button class="rounded-md focus:outline-none focus:shadow-outline-purple" @click="toggleTheme" aria-label="Toggle color mode">
+            <li class=" text-right sm:text-left">
+                <button class="rounded-md focus:outline-none focus:shadow-outline-purple px-4 py-3 " @click="toggleTheme" aria-label="Toggle color mode">
                     <template x-if="!dark">
                         <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
@@ -29,12 +29,12 @@
                     </template>
                 </button>
             </li>
-            <li class="border-t md:border-none">
+            <li class="border-t md:border-none text-right sm:text-left">
                 @if (session('role_id') == 2)
                 <livewire:cart-component />
                 @endif
             </li>
-            <li class="border-t md:border-none ">
+            <li class="border-t md:border-none text-right sm:text-left">
                 <a href="{{url('/logout')}}" class="block md:inline-block px-4 py-3 no-underline text-gray-500  hover:text-black dark:hover:text-white">Sign Out</a>
             </li>
 

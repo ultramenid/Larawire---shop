@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -11,10 +12,10 @@ class ProductCategory extends Component
 {
     use WithPagination;
     public $isCreating = false, $isUpdate = false, $deleter= false;
-    public $name, $uName, $uId;
+    public $name, $uName, $uId, $messageToast;
     public $deleteName, $deleteID;
     public $no = 1;
-    public $readyToLoad = false;
+    public $readyToLoad = false, $toast = false;
 
 
     public function loadPosts()
@@ -102,8 +103,18 @@ class ProductCategory extends Component
     }
 
     public function deleting($deleteID){
-        DB::table('products_category')->where('id', $deleteID)->delete();
+
+        try {
+            DB::table('products_category')->where('id', $deleteID)->delete();
+        } catch (\Throwable $th) {
+            $this->toast = true;
+            $this->messageToast = 'Cannot delete, Category has product records';
+        }
         $this->closeDelete();
+    }
+
+    public function closeToast(){
+        $this->toast = false;
     }
 
     public function closeDelete(){

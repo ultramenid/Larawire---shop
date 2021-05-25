@@ -13,16 +13,13 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{asset('css/app.css')}}" defer>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
     @livewireStyles
 
     @livewireScripts
     <script src="{{ asset('js/app.js') }}" defer data-turbolinks-suppress-warning></script>
     <script src="{{asset('js/adapter.js')}}" data-turbolinks-eval="false"></script>
-
-
-
-
-
+</head>
 
 <body class="bg-gray-50 dark:bg-gray-900">
 
@@ -31,7 +28,6 @@
 
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="{{asset('js/dark.js')}}"></script>
-
 </body>
 
 
