@@ -10,15 +10,16 @@
         </button>
     </div>
 
-        @if ($isCreating)
-            @include('livewire.etcList.createProducts')
-        @endif
-        @if($isUpdate)
-            @include('livewire.etcList.updateProducts')
-        @endif
-        @if($deleter)
+        <div x-data="{ open: @entangle('deleter') }">
             @include('livewire.etcList.deleteProducts')
-        @endif
+        </div>
+
+        <div x-data="{ open: @entangle('isUpdate') }">
+            @include('livewire.etcList.updateProducts')
+        </div>
+        <div x-data="{ open: @entangle('isCreating') }">
+            @include('livewire.etcList.createProducts')
+        </div>
 
         <div class="text-right">
             <label class="text-gray-600 dark:text-gray-300 mr-2 text-sm">Search </label>
@@ -85,9 +86,9 @@
                                 <td class="px-4 py-4 break-words text-sm  text-gray-500 dark:text-gray-300 hidden sm:block">
                                     <img src="{{ url('/storage/'.$item->photo) }}  " alt="" class="h-12 w-12 ">
                                 </td>
-                                <td class=" break-words text-sm text-gray-500 dark:text-gray-300 text-center">
+                                <td class=" break-words text-sm text-gray-500 dark:text-gray-300 ">
                                     <div class="relative " x-data="{ open: false }">
-                                        <button class="block focus:outline-none" @click="open = true">
+                                        <button class="block focus:outline-none text-center" @click="open = true">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
                                               </svg>

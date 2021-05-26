@@ -1,4 +1,4 @@
-<div class="h-screen flex items-center bg-gray-50  px-4">
+<div class="h-screen flex items-center bg-gray-50 dark:bg-gray-900  px-4">
 
     <div class="mx-auto  rounded border w-96 bg-white shadow-sm">
         <form wire:submit.prevent="login">

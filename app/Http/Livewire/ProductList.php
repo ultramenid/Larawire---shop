@@ -13,12 +13,12 @@ class ProductList extends Component
 {
     use WithFileUploads;
     use WithPagination;
-    public $isCreating = false , $isUpdate = false, $deleter = false, $isDelete = false;
+    public $isCreating , $isUpdate , $deleter , $isDelete ;
     public $photo, $name, $price, $quantity, $category, $discount= 0 ;
     public $uphoto, $uName, $uPrice, $uQuantity, $uCategory, $uId, $uDiscount;
     public $deleteName, $deleteID;
     public $search = '' ;
-    public $readyToLoad = false;
+    public $readyToLoad;
     public $dataField = 'name';
     public $dataOrder= 'asc' ;
 

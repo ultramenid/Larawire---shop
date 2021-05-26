@@ -2,7 +2,7 @@
 <h1 class="text-gray-900 font-bold text-2xl mb-2 dark:text-gray-100">Product Category</h1>
 
         <div x-data="{ open: @entangle('toast') }">
-            <div class="fixed z-20 inset-x-0 bottom-0 flex flex-col items-end justify-center px-4 py-6 pointer-events-none sm:p-6 sm:justify-start space-y-4" x-show="open">
+            <div class="fixed z-20 inset-x-0 bottom-0 flex flex-col items-end justify-center px-4 py-6 pointer-events-none sm:p-6 sm:justify-start space-y-4" x-show.transition="open">
                 <div
                     class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto"
                 >
@@ -41,18 +41,16 @@
         </button>
     </div>
 
-    @if ($isCreating)
-    @include('livewire.etcCategory.createCategory')
-    @endif
+    <div x-data="{ open: @entangle('deleter') }">
+        @include('livewire.etcCategory.deleteCategory')
+    </div>
 
-    @if($isUpdate)
-    @include('livewire.etcCategory.UpdateCategory')
-    @endif
-
-    @if($deleter)
-    @include('livewire.etcCategory.deleteCategory')
-    @endif
-
+    <div x-data="{ open: @entangle('isUpdate') }">
+        @include('livewire.etcCategory.UpdateCategory')
+    </div>
+    <div x-data="{ open: @entangle('isCreating') }">
+        @include('livewire.etcCategory.createCategory')
+    </div>
 
     <div class="flex flex-col py-5">
         <div class="-my-2  sm:-mx-6 lg:-mx-8 ">
