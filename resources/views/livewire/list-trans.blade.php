@@ -40,7 +40,7 @@
                 @empty
                     <tr>
                         <td colspan="6" class=" text-sm text-gray-500 px-6 py-4 text-center">
-                            Loading. . .
+                            No data found
                         </td>
                     </tr>
 

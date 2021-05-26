@@ -1,36 +1,37 @@
 <div class="sm:col-span-10 col-span-12 space-y-1">
 <h1 class="text-gray-900 font-bold text-2xl mb-2 dark:text-gray-100">Product Category</h1>
 
-        <div x-data="{ open: @entangle('toast') }">
-            <div class="fixed z-20 inset-x-0 bottom-0 flex flex-col items-end justify-center px-4 py-6 pointer-events-none sm:p-6 sm:justify-start space-y-4" x-show.transition="open">
-                <div
-                    class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto"
-                >
-                    <div class="rounded-lg shadow-xs overflow-hidden">
-                        <div class="p-4">
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                </div>
-                                <div class="ml-3 w-0 flex-1 pt-0.5">
-                                    <p class="text-sm leading-5 font-medium text-gray-900">{{$messageToast}}</p>
+    <div class="fixed z-20 inset-x-0 bottom-0 flex flex-col items-end justify-center px-4 py-6 pointer-events-none sm:p-6 sm:justify-start space-y-2" x-show.transition="open">
+        @forelse ($notification as $key => $value)
+        <div
+            class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto"
+        >
 
-                                </div>
-                                <div class="ml-4 flex-shrink-0 flex">
-                                    <button class="inline-flex text-gray-400 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150" wire:click='closeToast()'>
-                                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
+            <div class="rounded-lg shadow-xs overflow-hidden ">
+                <div class="p-4">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0">
+                            @include('livewire.etcCategory.typeToast')
+                        </div>
+                        <div class="ml-3 w-0 flex-1 pt-0.5">
+                            <p class="text-sm leading-5 font-medium text-gray-900">{{$value['message']}}</p>
+
+                        </div>
+                        <div class="ml-4 flex-shrink-0 flex">
+                            <button class="inline-flex text-gray-400 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150" wire:click='closeToast({{$key}})'>
+                                <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        @empty
+        <a></a>
+    @endforelse
+    </div>
 
     <div class="sm:text-left text-center">
         <button wire:loading.remove wire:target='create' wire:click='create' class=" py-1 focus:outline-none border border-gray-300 hover:border-gray-600 text-gray-500  hover:text-gray-900  text-center rounded md:w-20 w-full  dark:text-gray-400 dark:border-gray-400">
@@ -131,7 +132,7 @@
                             @empty
                             <tr>
                                 <td colspan="3" class="whitespace-nowrap text-sm text-gray-500 dark:text-gray-300  px-6 py-4">
-                                    Loading. . .
+                                    No data found
                                 </td>
                             </tr>
 

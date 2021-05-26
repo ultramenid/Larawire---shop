@@ -17,8 +17,8 @@
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div class="">
                         <div class="mb-4">
-                            <label for="formName" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
-                            <input wire:keydown.enter='store' type="text" class=" appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" wire:model.defer="name">
+                            <label for="formName" class="block text-gray-700 text-sm font-bold mb-2">Category name:</label>
+                            <input  wire:keydown.enter='store' type="text" class=" appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" wire:model.defer="name">
                             @error('name') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
                     </div>

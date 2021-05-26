@@ -43,6 +43,13 @@ class ProductList extends Component
         ]);
     }
 
+    public function updatedcategory()
+    {
+        if($this->category == 'creating'){
+             redirect()->to('/productscategory');
+        }
+    }
+
     public function loadPosts()
     {
         $this->readyToLoad = true;

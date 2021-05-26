@@ -31,10 +31,11 @@
                     <div class="mb-3">
                         <label for="formStatus" class="block text-gray-700 text-sm font-bold mb-2">Category:</label>
                         <select wire:model="category" class=" appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none  ">
-                            <option value="">-</option>
-                            @foreach ($categories as $item)
-                            <option value="{{$item->id}}">{{$item->name}}</option>
+                            <option value=""></option>
+                            @foreach($categories as $item)
+                                <option value="{{$item->id}}">{{$item->name}}</option>
                             @endforeach
+                            <option class="text-sm bg-gray-100 text-gray-500" value="creating">Create new one.</option>
                         </select>
                         @error('category') <span class="text-red-500">{{ $message }}</span>@enderror
                     </div>

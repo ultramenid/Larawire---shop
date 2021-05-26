@@ -108,7 +108,7 @@
                             @empty
                             <tr>
                                 <td colspan="6" class="whitespace-nowrap text-sm text-gray-500 px-6 py-4">
-                                    Loading. . .
+                                    No data found
                                 </td>
                             </tr>
                             @endforelse

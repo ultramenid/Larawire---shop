@@ -14,8 +14,9 @@ class ProductCategory extends Component
     public $isCreating = false, $isUpdate = false, $deleter= false;
     public $name, $uName, $uId, $messageToast;
     public $deleteName, $deleteID;
-    public $no = 1;
-    public $readyToLoad = false, $toast = false;
+    public $no = 1, $notification = [], $hasNotification = 0;
+    public $readyToLoad = false, $toast = false, $toastType;
+
 
 
     public function loadPosts()
@@ -107,18 +108,35 @@ class ProductCategory extends Component
         try {
             DB::table('products_category')->where('id', $deleteID)->delete();
         } catch (\Throwable $th) {
-            $this->toast = true;
-            $this->messageToast = 'Cannot delete, Category has product records';
+            $message = 'Cannot delete, Category has product records';
+            $type = 'error'; //error, warning
+           $this->addToast($message, $type);
         }
         $this->closeDelete();
     }
 
-    public function closeToast(){
-        $this->toast = false;
+    public function addToast($message, $type){
+
+        $this->toast = true;
+
+        $nilai = $this->hasNotification + 1;
+        $this->hasNotification = $nilai;
+
+        array_push($this->notification, [
+            'message' => $message,
+            'type' =>  $type
+        ]);
+        // dd($this->notification);
+    }
+
+    public function closeToast($id){
+        unset($this->notification[$id]);
     }
 
     public function closeDelete(){
         $this->deleter = false;
+
+
     }
     public function categoryData(){
         try {
