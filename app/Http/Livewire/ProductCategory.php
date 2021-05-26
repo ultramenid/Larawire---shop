@@ -109,7 +109,7 @@ class ProductCategory extends Component
             DB::table('products_category')->where('id', $deleteID)->delete();
         } catch (\Throwable $th) {
             $message = 'Cannot delete, Category has product records';
-            $type = 'error'; //error, warning
+            $type = 'error'; //error, success
            $this->addToast($message, $type);
         }
         $this->closeDelete();
