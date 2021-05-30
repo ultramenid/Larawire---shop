@@ -4,9 +4,9 @@
         {{ session('message') }}
     </div>
     @endif
-    <div class="flex shadow-md my-10">
-        <div class="w-3/4 bg-white px-10 py-10">
-            <div class="flex justify-between border-b pb-8">
+    <div class="grid grid-cols-12 shadow-md my-10">
+        <div class="sm:col-span-9 col-span-12 bg-white px-10 py-10">
+            <div class="sm:flex grid grid-col-1 justify-between border-b pb-8">
                 <h1 class="font-semibold text-2xl">Shopping Cart</h1>
                 <h2 class="font-semibold text-2xl">{{$count}} Items</h2>
             </div>
@@ -64,7 +64,7 @@
             </a>
         </div>
 
-        <div id="summary" class="w-1/4 px-8 py-10">
+        <div id="summary" class="sm:col-span-3 col-span-12 px-4 py-10">
             <h1 class="font-semibold text-2xl border-b pb-8 dark:text-white">Order Summary</h1>
             <div class="flex justify-between mt-10 mb-5">
                 <span class="font-semibold text-sm uppercase dark:text-white">Items </span>

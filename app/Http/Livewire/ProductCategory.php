@@ -12,10 +12,10 @@ class ProductCategory extends Component
 {
     use WithPagination;
     public $isCreating = false, $isUpdate = false, $deleter= false;
-    public $name, $uName, $uId, $messageToast;
+    public $name, $uName, $uId;
     public $deleteName, $deleteID;
-    public $no = 1, $notification = [], $hasNotification = 0;
-    public $readyToLoad = false, $toast = false, $toastType;
+    public $no = 1;
+    public $readyToLoad = false;
 
 
 
@@ -110,28 +110,11 @@ class ProductCategory extends Component
         } catch (\Throwable $th) {
             $message = 'Cannot delete, Category has product records';
             $type = 'error'; //error, success
-           $this->addToast($message, $type);
+           $this->emit('toast',$message, $type);
         }
         $this->closeDelete();
     }
 
-    public function addToast($message, $type){
-
-        $this->toast = true;
-
-        $nilai = $this->hasNotification + 1;
-        $this->hasNotification = $nilai;
-
-        array_push($this->notification, [
-            'message' => $message,
-            'type' =>  $type
-        ]);
-        // dd($this->notification);
-    }
-
-    public function closeToast($id){
-        unset($this->notification[$id]);
-    }
 
     public function closeDelete(){
         $this->deleter = false;

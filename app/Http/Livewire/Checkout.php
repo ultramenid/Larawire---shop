@@ -40,7 +40,7 @@ class Checkout extends Component
     }
 
     public function minQuantity($id, $category_id, $price, $discount, $quantity){
-        if($quantity > 0){
+        if($quantity >= 1){
             $bquantity = $quantity - 1;
             $btotal = $price * $bquantity - (($discount / 100 * $price) * $bquantity);
             // dd($btotal);
@@ -52,6 +52,9 @@ class Checkout extends Component
                 'total' => $btotal
             ]);
         }
+        DB::table('carts')
+        ->where('product_id', $id)
+        ->delete();
         $this->emit('cartAdded');
 
     }
