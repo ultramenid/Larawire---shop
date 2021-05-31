@@ -40,22 +40,20 @@ class Checkout extends Component
     }
 
     public function minQuantity($id, $category_id, $price, $discount, $quantity){
-        if($quantity >= 1){
-            $bquantity = $quantity - 1;
-            $btotal = $price * $bquantity - (($discount / 100 * $price) * $bquantity);
-            // dd($btotal);
-             DB::table('carts')
-            ->where('product_id', $id)
-            ->where('user_id', session('id'))
-            ->update([
-                'quantity' => $bquantity,
-                'total' => $btotal
-            ]);
-        }
-        DB::table('carts')
-        ->where('product_id', $id)
-        ->delete();
-        $this->emit('cartAdded');
+            if($quantity > 1){
+                $bquantity = $quantity - 1;
+                $btotal = $price * $bquantity - (($discount / 100 * $price) * $bquantity);
+                // dd($btotal);
+                 DB::table('carts')
+                ->where('product_id', $id)
+                ->where('user_id', session('id'))
+                ->where('category_id', $category_id)
+                ->update([
+                    'quantity' => $bquantity,
+                    'total' => $btotal
+                ]);
+                $this->emit('cartAdded');
+            }
 
     }
     public function grandTotal(){

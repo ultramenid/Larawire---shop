@@ -4,60 +4,57 @@
         {{ session('message') }}
     </div>
     @endif
+
     <div class="grid grid-cols-12 shadow-md my-10">
         <div class="sm:col-span-9 col-span-12 bg-white px-10 py-10">
-            <div class="sm:flex grid grid-col-1 justify-between border-b pb-8">
+            <div class="sm:flex grid grid-col-1 justify-between  pb-8">
                 <h1 class="font-semibold text-2xl">Shopping Cart</h1>
                 <h2 class="font-semibold text-2xl">{{$count}} Items</h2>
             </div>
-            <div class="flex mt-10 mb-5">
-                <h3 class="font-semibold text-gray-600 text-xs uppercase w-2/5">Product Details</h3>
-                <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">Quantity</h3>
-                <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">Price</h3>
-                <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">Discount</h3>
-                <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">Total</h3>
-            </div>
             @foreach ($carts as $cart)
-            <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
-                <div class="flex w-2/5">
-                    <!-- product -->
-                    <div class="w-20">
-                        <img class="h-12 w-12" src="{{ url('/storage/'.$cart->photo)}}" alt="">
+            <div class="border-b-2 ">
+                <div class="space-y-4 py-8 ">
+                    <div class="flex space-x-4 items-center">
+                        <img src="{{ url('/storage/'.$cart->photo)}}" alt="{{$cart->name}}" class="w-16">
+                        <div class="">
+                            <h1 class="sm:text-xl text-base text-gray-500 normal-case break-words ">{{$cart->name}}</h1>
+                            <p class="normal-case text-gray-600 text-base font-semibold ">Rp {{number_format($cart->price,0, ',' , '.') }}
+                                @if ($cart->discount)
+                                <span class="inline-block px-2 py-1 leading-none bg-yellow-200 text-yellow-800 rounded-full font-semibold uppercase tracking-wide text-xs ">Save {{ $cart->discount }}%</span>
+                                @endif
+                            </p>
+                            <a onclick="confirm('Confirm delete?') || event.stopImmediatePropagation()" wire:click='removeItem({{$cart->cart_id}})' class="cursor-pointer font-semibold hover:text-red-700 text-gray-500 text-xs">Remove</a>
+                        </div>
                     </div>
-                    <div class="flex flex-col justify-between ml-4 flex-grow">
-                        <span class="font-bold text-sm">{{$cart->name}}</span>
-                        <span class="text-gray-500 text-xs">{{$cart->category_name}}</span>
-                        <a onclick="confirm('Confirm delete?') || event.stopImmediatePropagation()" wire:click='removeItem({{$cart->cart_id}})' class="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</a>
+                    <div class="flex sm:justify-end justify-between space-x-16 ">
+                        <div class="flex space-x-2 items-center">
+                            <button wire:loading.attr="disabled" wire:click='minQuantity({{$cart->id}},{{ $cart->category_id}},{{ $cart->price}},{{ $cart->discount}}, {{$cart->quantity}})'>
+                                <svg class="fill-current text-gray-600  w-3" viewBox="0 0 448 512">
+                                    <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
+                                </svg>
+                            </button>
+
+                            <p class="px-2 border text-center w-12 h-6 text-gray-800 " type="text">{{$cart->quantity}}</p>
+
+                            <button wire:loading.attr="disabled" wire:click='addQuantity({{$cart->id}},{{ $cart->category_id}},{{ $cart->price}},{{ $cart->discount}}, {{$cart->quantity}})'>
+                                <svg class="fill-current text-gray-600  w-3" viewBox="0 0 448 512">
+                                    <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div>
+                            <h1 class="normal-case text-gray-600 text-base font-semibold ">Rp {{number_format($cart->total,0, ',' , '.') }} </h1>
+                        </div>
                     </div>
                 </div>
-                <div class="flex justify-center w-1/5">
-                    <button wire:loading.attr="disabled" wire:click='minQuantity({{$cart->id}},{{ $cart->category_id}},{{ $cart->price}},{{ $cart->discount}}, {{$cart->quantity}})'>
-                        <svg class="fill-current text-gray-600 w-3" viewBox="0 0 448 512">
-                            <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
-                        </svg>
-                    </button>
-
-                    <div class="mx-2 border text-center w-8" type="text">{{$cart->quantity}}</div>
-
-                    <button wire:loading.attr="disabled" wire:click='addQuantity({{$cart->id}},{{ $cart->category_id}},{{ $cart->price}},{{ $cart->discount}}, {{$cart->quantity}})'>
-                        <svg class="fill-current text-gray-600 w-3" viewBox="0 0 448 512">
-                            <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
-                        </svg>
-                    </button>
-
-                </div>
-                <span class="text-center w-1/5 font-semibold text-sm">Rp {{number_format($cart->price,0, ',' , '.') }}</span>
-                <span class="text-center w-1/5 font-semibold text-sm"> {{ $cart->discount }}%</span>
-                {{-- <span wire:model='total' class="text-center w-1/5 font-semibold text-sm">{{  number_format($cart->price * $cart->quantity - (($cart->discount / 100 * $cart->price) * $cart->quantity)  ,0, ',' , '.') }}</span> --}}
-                {{-- <span wire:model='total' class="text-center w-1/5 font-semibold text-sm">{{  number_format(((100 - $cart->discount) * ($cart->price / 100)) * $cart->quantity  ,0, ',' , '.') }}</span> --}}
-                <span wire:model='total' class="text-center w-1/5 font-semibold text-sm">Rp {{number_format($cart->total,0, ',' , '.') }} </span>
             </div>
             @endforeach
 
 
-            <a href="{{ url('/dashboard') }}" class="flex font-semibold text-indigo-600 text-sm mt-10">
+            <a href="{{ url('/dashboard') }}" class="flex font-semibold text-black text-sm mt-10">
 
-                <svg class="fill-current mr-2 text-indigo-600 w-4" viewBox="0 0 448 512">
+                <svg class="fill-current mr-2 text-black w-4" viewBox="0 0 448 512">
                     <path d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z" />
                 </svg>
                 Continue Shopping
@@ -83,4 +80,6 @@
         </div>
 
     </div>
+
 </div>
+
