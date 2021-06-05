@@ -27,10 +27,7 @@ class ProductList extends Component
         $this->dataOrder = $this->dataOrder == 'asc' ? 'desc' : 'asc';
     }
 
-     public function updatingSearch()
-    {
-        $this->resetPage();
-    }
+
     //realtime validation upload
     public function updatedPhoto($photo)
     {
@@ -64,6 +61,7 @@ class ProductList extends Component
     }
     public function closeUpdate(){
         $this->isUpdate = false;
+        $this->photo ='';
     }
 
     //close modal creae

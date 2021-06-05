@@ -46,11 +46,14 @@
                         <div class="mb-4">
                             <div class="flex items-center justify-center py-16 border border-dashed border-gray-400 rounded">
                                 <label class="cursor-pointer">
-                                    @if (! $photo )
-                                    <img src="{{ url('/storage/'.$uphoto) }}" alt="" class="h-32 w-32 rounded ">
-                                    @else
-                                    <img src="{{$photo->temporaryUrl()}}" alt="" class="h-32 w-32 rounded ">
+                                    @if ($uphoto)
+                                        @if ($photo)
+                                            <img src="{{$photo->temporaryUrl()}}" alt="" class="h-32 w-32 rounded ">
+                                        @else
+                                            <img src="{{ asset('/storage/'.$uphoto) }}" alt="" class="h-32 w-32 rounded ">
+                                        @endif
                                     @endif
+
                                     <input type='file' class="hidden"  wire:model='photo' accept="image/*"/>
                                     <p wire:loading.remove class="text-xs text-center text-gray-400">Clik to upload image</p>
                                     <p wire:loading wire:target="photo" class="text-xs text-center text-gray-400">uploding. . .</p>

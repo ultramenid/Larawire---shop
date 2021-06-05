@@ -84,7 +84,7 @@
                                     <a class="hidden sm:block">{{ $item->discount }} %</a>
                                 </td>
                                 <td class="px-4 py-4 break-words text-sm  text-gray-500 dark:text-gray-300 hidden sm:block">
-                                    <img src="{{ url('/storage/'.$item->photo) }}  " alt="" class="h-12 w-12 ">
+                                    <img src="{{ asset('storage/'.$item->photo) }}  " alt="" class="h-12 w-12 ">
                                 </td>
                                 <td class=" break-words text-sm text-gray-500 dark:text-gray-300 ">
                                     <div class="relative " x-data="{ open: false }">
