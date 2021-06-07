@@ -1,10 +1,7 @@
-<div class="fixed z-20 inset-x-0 bottom-0 flex flex-col items-end justify-center px-4 py-6 pointer-events-none sm:p-6 sm:justify-start space-y-2" x-show.transition="open">
+<div class="fixed z-20 inset-x-0 bottom-0 flex flex-col items-end justify-center px-4 py-6 pointer-events-none sm:p-6 sm:justify-start space-y-2"  >
     @forelse ($notification as $key => $value)
-    <div
-        class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto"
-    >
-
-        <div class="rounded-lg shadow-xs overflow-hidden ">
+    <div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto" ">
+        <div class="rounded-lg shadow-xs overflow-hidden "  >
             <div class="p-4">
                 <div class="flex items-start">
                     <div class="flex-shrink-0">
