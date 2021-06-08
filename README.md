@@ -22,7 +22,14 @@
   
 
 ## How to run ?
-Guide from  [devmarketer.io](https://devmarketer.io/learn/setup-laravel-project-cloned-github-com/) thanks to him.
+ - git clone https://github.com/ultramenid/Larawire---shop.git
+ - composer install
+ - npm install
+ - cp .env.example .env 
+ - php artisan key:generate
+ - php artisan migrate
+ - php artisan db:seed
+ - php artisan storage:link
 
 
 ## Screenshot
