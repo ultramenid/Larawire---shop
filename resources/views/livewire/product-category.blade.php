@@ -17,7 +17,7 @@
     </div>
 
     <div x-data="{ open: @entangle('isUpdate') }">
-        @include('livewire.etcCategory.UpdateCategory')
+        @include('livewire.etcCategory.updateCategory')
     </div>
     <div x-data="{ open: @entangle('isCreating') }">
         @include('livewire.etcCategory.createCategory')
