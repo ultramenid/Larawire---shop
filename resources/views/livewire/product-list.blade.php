@@ -1,11 +1,11 @@
 <div class="sm:col-span-10 col-span-12 space-y-1">
-<h1 class="text-gray-900 font-bold text-2xl mb-2 dark:text-gray-100">Product list</h1>
+ <h1 class="text-gray-900 font-bold text-2xl mb-2 dark:text-gray-100">Product list</h1>
 
     <div class="sm:text-left text-center">
         <button wire:loading.remove wire:target='create' wire:click='create' class=" py-1 focus:outline-none border border-gray-300 hover:border-gray-600 text-gray-500  hover:text-gray-900  text-center rounded md:w-20 w-full  dark:text-gray-400 dark:border-gray-400">
             Add
         </button>
-        <button wire:loading wire:target='create' class=" py-1 focus:outline-none border border-gray-300 hover:border-gray-600 text-gray-500  hover:text-gray-900 w-20  text-center rounded">
+        <button wire:loading wire:target='create'class=" py-1 focus:outline-none border border-gray-300 hover:border-gray-600 text-gray-500  hover:text-gray-900  text-center rounded md:w-20 w-full  dark:text-gray-400 dark:border-gray-400">
             Add. . .
         </button>
     </div>
@@ -20,6 +20,7 @@
         <div x-data="{ open: @entangle('isCreating') }">
             @include('livewire.etcList.createProducts')
         </div>
+
 
         <div class="text-right">
             <label class="text-gray-600 dark:text-gray-300 mr-2 text-sm">Search </label>
@@ -98,9 +99,9 @@
                                             class="absolute mt-2 right-0 bg-white rounded-lg shadow-lg block w-24 z-10"
                                             x-show="open"
                                             @click.away="open = false"
-                                        >
-                                          <li class="block hover:bg-gray-200 cursor-pointer py-1 mt-2 px-4 dark:text-gray-500" wire:click="edit({{ $item->id }})" @click.away="open = false">Edit</li>
-                                          <li class="block hover:bg-gray-200 cursor-pointer  py-1 mb-2 px-4 dark:text-gray-500" wire:click="delete({{ $item->id }})" @click.away="open = false">Delete</li>
+                                            x-cloak style="display: none !important">
+                                            <li class="block hover:bg-gray-200 cursor-pointer py-1 mt-2 px-4 dark:text-gray-500" wire:click="edit({{ $item->id }})" @click.away="open = false">Edit</li>
+                                            <li class="block hover:bg-gray-200 cursor-pointer  py-1 mb-2 px-4 dark:text-gray-500" wire:click="delete({{ $item->id }})" @click.away="open = false">Delete</li>
                                         </ul>
                                     </div>
                                 </td>

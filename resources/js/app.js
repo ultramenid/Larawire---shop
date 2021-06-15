@@ -3,7 +3,6 @@ var Turbolinks = require("turbolinks")
 Turbolinks.start()
 
 
-
 //adapter turbolinks
 if (typeof window.Livewire === 'undefined') {
     throw 'Livewire Turbolinks Plugin: window.Livewire is undefined. Make sure @livewireScripts is placed above this script include'

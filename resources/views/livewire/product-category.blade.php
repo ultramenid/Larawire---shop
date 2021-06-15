@@ -7,7 +7,7 @@
         <button wire:loading.remove wire:target='create' wire:click='create' class=" py-1 focus:outline-none border border-gray-300 hover:border-gray-600 text-gray-500  hover:text-gray-900  text-center rounded md:w-20 w-full  dark:text-gray-400 dark:border-gray-400">
             Add
         </button>
-        <button wire:loading wire:target='create' class=" py-1 focus:outline-none border border-gray-300 hover:border-gray-600 text-gray-500  hover:text-gray-900 w-20  text-center rounded">
+        <button wire:loading wire:target='create' class=" py-1 focus:outline-none border border-gray-300 hover:border-gray-600 text-gray-500  hover:text-gray-900  text-center rounded md:w-20 w-full  dark:text-gray-400 dark:border-gray-400">
             Add. . .
         </button>
     </div>
@@ -91,6 +91,7 @@
                                             class="absolute mt-2 right-0 bg-white rounded-lg shadow-lg block w-24 z-10"
                                             x-show="open"
                                             @click.away="open = false"
+                                            x-cloak style="display: none !important"
                                         >
                                           <li class="block hover:bg-gray-200 cursor-pointer py-1 mt-2 px-4 dark:text-gray-500" wire:click="edit({{ $item->id }})" @click.away="open = false">Edit</li>
                                           <li class="block hover:bg-gray-200 cursor-pointer  py-1 mb-2 px-4 dark:text-gray-500" wire:click="delete({{ $item->id }})" @click.away="open = false">Delete</li>
