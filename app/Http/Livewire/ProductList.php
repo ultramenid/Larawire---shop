@@ -49,25 +49,29 @@ class ProductList extends Component
 
     public function loadPosts()
     {
-        $this->readyToLoad = true;
+        if ($this->productsData() && $this->categoryData()) {
+            return $this->readyToLoad = true;
+
+        }
+        return $this->readyToLoad = false;
     }
 
-    //open modal create
+    // modal create
     public function create(){
-        $this->isCreating = true;
+        $this->isCreating = !$this->isCreating;
+        $this->clearField();
     }
+
+
+
     public function update(){
         $this->isUpdate = true;
     }
+
+
     public function closeUpdate(){
         $this->isUpdate = false;
         $this->photo ='';
-    }
-
-    //close modal creae
-    public function closeCreate(){
-        $this->isCreating = false;
-        $this->clearField();
     }
 
     //clearfield
@@ -177,11 +181,15 @@ class ProductList extends Component
         }
     }
 
+    public function categoryData(){
+        return DB::table('products_category')->get();
+    }
+
     public function render()
     {
 
         $data= [
-            'categories' => $this->readyToLoad ? DB::table('products_category')->get() : [],
+            'categories' => $this->readyToLoad ? $this->categoryData()  : [],
             'products' => $this->readyToLoad ? $this->productsData() : []
         ];
         return view('livewire.product-list', $data);

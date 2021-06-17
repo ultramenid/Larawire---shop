@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
+use phpDocumentor\Reflection\Types\This;
 
 class ProductCategory extends Component
 {
@@ -21,30 +22,28 @@ class ProductCategory extends Component
 
     public function loadPosts()
     {
-        $this->readyToLoad = true;
+        if($this->categoryData()){
+
+            return $this->readyToLoad = true;
+        }
+
+        return $this->readyToLoad = false;
     }
 
     //modal insert
     public function create(){
-        $this->isCreating = true;
+        $this->isCreating = !$this->isCreating;
+        $this->clearField();
     }
 
     //modal update
     public function update(){
         $this->isUpdate = true;
+
     }
 
-
-    //close modal update
     public function closeUpdate(){
         $this->isUpdate = false;
-        $this->clearField();
-    }
-
-
-    //close modal insert
-    public function closeCreate(){
-        $this->isCreating = false;
         $this->clearField();
     }
 

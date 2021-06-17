@@ -32,21 +32,24 @@ class ChooseComponent extends Component
     }
 
     public function loadFirst(){
-        $this->readyToLoad = true;
+        if ($this->dataProducts()) {
+           return $this->readyToLoad = true;
+        }
+        return $this->readyToLoad = false;
+    }
+
+    public function dataProducts(){
+       return  DB::table('products')
+        ->join('products_category', 'products.category_id', '=' , 'products_category.id')
+        ->select('products.*','products_category.name as category_name')
+        ->orderBy('id', 'desc')->paginate(10);
     }
 
 
     public function render()
     {
-        // $sc = '%'. $this->search .'%';
         $data= [
-            // 'alreadyAdded' => DB::table('carts')
-            'products' => $this->readyToLoad
-            ? DB::table('products')
-            ->join('products_category', 'products.category_id', '=' , 'products_category.id')
-            ->select('products.*','products_category.name as category_name')
-            ->orderBy('id', 'desc')->paginate(10)
-            : []
+            'products' => $this->readyToLoad ? $this->dataProducts() : []
         ];
         return view('livewire.choose-component', $data);
     }
