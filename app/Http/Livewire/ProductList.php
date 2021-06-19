@@ -136,8 +136,12 @@ class ProductList extends Component
         if(!$this->photo){
             $potoimg = $this->uphoto;
         }else{
-            $potoimg = $this->photo->store('images', 'public');
-            unlink(storage_path('app/public/'.$this->uphoto));
+            try {
+                 unlink(storage_path('app/public/'.$this->uphoto));
+                 $potoimg = $this->photo->store('images', 'public');
+            } catch (\Throwable $th) {
+                $potoimg = $this->photo->store('images', 'public');
+            }
         }
         DB::table('products')
             ->where('id', $id)
@@ -162,6 +166,7 @@ class ProductList extends Component
 
 
     public function delete($id){
+
         $dataDelete = DB::table('products')->where('id', $id)->first();
         $this->deleteName = $dataDelete->name;
         $this->deleteID = $dataDelete->id;
@@ -175,8 +180,14 @@ class ProductList extends Component
     }
 
     public function deleting($deleteID){
-        unlink(storage_path('app/public/'.$this->deletePhoto));
-        DB::table('products')->where('id', $deleteID)->delete();
+        DB::table('carts')->where('product_id', $deleteID)->delete();
+        try {
+            unlink(storage_path('app/public/'.$this->deletePhoto));
+            DB::table('products')->where('id', $deleteID)->delete();
+       } catch (\Throwable $th) {
+            DB::table('products')->where('id', $deleteID)->delete();
+       }
+
 
         //passing to toast
         $message = 'Successfully deleting product';
