@@ -55,7 +55,7 @@
                                         {{ $no++ }}
                                     </a>
                                 </td>
-                                <td class="px-4 py-4 whitespace-nowrap text-sm font-bold text-gray-900 dark:text-gray-300">
+                                <td class="px-4 py-4 whitespace-nowrap text-sm font-bold text-gray-500 dark:text-gray-100">
                                     {{ $item->name }}
                                 </td>
                                 <td class="px-2 py-4 break-words text-sm text-gray-500 dark:text-gray-300">
