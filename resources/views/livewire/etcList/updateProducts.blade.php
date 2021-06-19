@@ -50,7 +50,7 @@
                                         @if ($photo)
                                             <img src="{{$photo->temporaryUrl()}}" alt="" class="h-32 w-32 rounded ">
                                         @else
-                                            <img src="{{ asset('/storage/'.$uphoto) }}" alt="" class="h-32 w-32 rounded ">
+                                            <img src="{{ asset('storage/photos/'.$uphoto) }}" alt="" class="h-32 w-32 rounded ">
                                         @endif
                                     @endif
 

@@ -106,13 +106,14 @@ class ProductList extends Component
             'category' => 'required'
         ]);
 
-        $name = $this->photo->store('images', 'public');
+        $potoimg = md5($this->photo . microtime()).'.'.$this->photo->extension();
+        $this->photo->storeAs('photos', $potoimg);
 
         DB::table('products')->insert([
             'name' => $this->name,
             'price' => $this->price,
             'quantity' => $this->quantity,
-            'photo' =>  $name,
+            'photo' =>  $potoimg,
             'discount' => $this->discount,
             'category_id' => $this->category,
             'created_at' => Carbon::now()
@@ -136,8 +137,10 @@ class ProductList extends Component
         if(!$this->photo){
             $potoimg = $this->uphoto;
         }else{
-            $potoimg = $this->photo->store('images', 'public');
-            Storage::delete($this->uphoto);
+            $potoimg = md5($this->photo . microtime()).'.'.$this->photo->extension();
+            $this->photo->storeAs('public/photos', $potoimg);
+
+            Storage::delete('public/photos/'. $this->uphoto);
         }
         DB::table('products')
             ->where('id', $id)
@@ -174,7 +177,7 @@ class ProductList extends Component
     }
 
     public function deleting($deleteID){
-        Storage::delete($this->deletePhoto);
+        Storage::delete('public/photos'. $this->uphoto);
         DB::table('products')->where('id', $deleteID)->delete();
 
         //passing to toast
