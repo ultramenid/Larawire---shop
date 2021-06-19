@@ -3,7 +3,7 @@
         @foreach ($products as $product)
         <div class="w-full  bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
             <div class="relative pb-48 overflow-hidden">
-                <img class="absolute inset-0 h-full w-full object-cover" src="{{ asset('storage/photos/'.$item->photo) }}" alt="">
+                <img class="absolute inset-0 h-full w-full object-cover" src="{{ url('storage/photos/'.$product->photo) }}" alt="">
             </div>
             <div class="p-4 ">
                 <div class="flex justify-between items-center mb-6">
