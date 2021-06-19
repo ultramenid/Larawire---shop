@@ -145,7 +145,11 @@ class ProductCategory extends Component
 
     }
     public function categoryData(){
-        return  DB::table('products_category')->orderBy($this->dataField, $this->dataOrder)->paginate(10);
+        try {
+            return  DB::table('products_category')->orderBy($this->dataField, $this->dataOrder)->paginate(10);
+        } catch (\Throwable $th) {
+            return [];
+        }
     }
     public function render()
     {

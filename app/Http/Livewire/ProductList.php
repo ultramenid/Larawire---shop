@@ -193,7 +193,7 @@ class ProductList extends Component
                 ->orderBy($this->dataField, $this->dataOrder)
                 ->paginate(5);
         } catch (\Throwable $th) {
-            return $th;
+            return [];
         }
     }
 

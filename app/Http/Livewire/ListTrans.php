@@ -4,10 +4,11 @@ namespace App\Http\Livewire;
 
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ListTrans extends Component
 {
-
+    use WithPagination;
     public $no = 1;
     public $readyToLoad= false;
 
