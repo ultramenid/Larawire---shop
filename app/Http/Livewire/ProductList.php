@@ -16,7 +16,7 @@ class ProductList extends Component
     public $isCreating , $isUpdate , $deleter , $isDelete ;
     public $photo, $name, $price, $quantity, $category, $discount= 0 ;
     public $uphoto, $uName, $uPrice, $uQuantity, $uCategory, $uId, $uDiscount;
-    public $deleteName, $deleteID;
+    public $deleteName, $deleteID, $deletePhoto;
     public $search = '' ;
     public $readyToLoad;
     public $dataField = 'name';
@@ -118,7 +118,11 @@ class ProductList extends Component
             'created_at' => Carbon::now()
             ]
         );
-        $this->closeCreate();
+        //passing to toast
+        $message = 'Successfully adding product';
+        $type = 'success'; //error, success
+        $this->emit('toast',$message, $type);
+        $this->create();
     }
 
     public function storeUpdate($id){
@@ -146,6 +150,11 @@ class ProductList extends Component
             'photo' => $potoimg,
             'updated_at' => Carbon::now()
             ]);
+
+        //passing to toast
+        $message = 'Successfully updating product';
+        $type = 'success'; //error, success
+        $this->emit('toast',$message, $type);
         $this->closeUpdate();
 
         DB::table('carts')->where('product_id', $id)->delete();
@@ -156,6 +165,7 @@ class ProductList extends Component
         $dataDelete = DB::table('products')->where('id', $id)->first();
         $this->deleteName = $dataDelete->name;
         $this->deleteID = $dataDelete->id;
+        $this->deletePhoto = $dataDelete->photo;
         $this->deleter = true;
     }
 
@@ -164,7 +174,13 @@ class ProductList extends Component
     }
 
     public function deleting($deleteID){
+        Storage::delete($this->deletePhoto);
         DB::table('products')->where('id', $deleteID)->delete();
+
+        //passing to toast
+        $message = 'Successfully deleting product';
+        $type = 'success'; //error, success
+        $this->emit('toast',$message, $type);
         $this->closeDelete();
     }
 

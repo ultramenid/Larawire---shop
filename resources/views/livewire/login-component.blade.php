@@ -1,4 +1,4 @@
-<div class="h-screen flex items-center bg-gray-50 dark:bg-gray-900  px-4">
+<div class="h-screen flex items-center bg-gray-50 dark:bg-black  px-4">
 
     <div class="mx-auto  rounded border w-96 bg-white shadow-sm">
         <form wire:submit.prevent="login">
@@ -6,7 +6,7 @@
             <h1 class="text-center mt-6 mb-16 text-3xl font-black"> Login Page </h1>
             <div class="px-6  mb-4">
                 <label for="formName" class="block text-gray-700 text-sm font-semibold mb-2">Username:</label>
-                <input type="text" class=" appearance-none border rounded w-full py-2 px-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" autofocus wire:model.defer="username">
+                <input type="text" class="appearance-none border rounded w-full py-2 px-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" autofocus wire:model.defer="username">
                 @error('username') <span class="text-red-500 text-xs">{{ $message }}</span>@enderror
             </div>
             <div class="px-6  mb-4">

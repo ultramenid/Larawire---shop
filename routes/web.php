@@ -19,7 +19,7 @@ Route::group(['middleware' => 'cekSession'], function () {
     //route dashboard
     Route::get('/dashboard', function () {
         return view('pages.dashboard', [
-            'title' => 'Welcome Page',
+            'title' => 'Dashboard Page',
             'tabs' => 'dashboard'
         ]);
     });

@@ -3,25 +3,25 @@
     <div class="flex flex-col py-5">
         <div class="-my-2  sm:-mx-6 lg:-mx-8 ">
             <div class="py-2 align-middle inline-block w-full sm:px-6 lg:px-8 ">
-                <div class="shadow  border-b border-gray-200 dark:border-gray-800 sm:rounded-lg dark:bg-gray-800 dark:text-white" >
+                <div class="shadow  border-b border-gray-200 dark:border-gray-800 sm:rounded-lg  dark:text-white" >
             <table class="w-full divide-y dark:divide-gray-800 divide-gray-200 ">
                 <thead>
                     <tr>
-                        <th scope="col" class="px-4 py-3 bg-gray-50 text-center dark:bg-gray-700 dark:text-white  text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th scope="col" class="px-4 py-3 bg-gray-50 text-center dark:bg-opacity-10   dark:text-white  text-xs font-medium text-gray-500 uppercase tracking-wider">
                             #
                         </th>
-                        <th scope="col" class="px-4 py-3 bg-gray-50 dark:bg-gray-700 dark:text-white  text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th scope="col" class="px-4 py-3 bg-gray-50 dark:bg-opacity-10 dark:text-white  text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                             User
                         </th>
-                        <th scope="col" class="px-4 py-3 bg-gray-50 dark:bg-gray-700 dark:text-white  text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th scope="col" class="px-4 py-3 bg-gray-50 dark:bg-opacity-10 dark:text-white  text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                             total
                         </th>
-                        <th scope="col" class="px-4 py-3 bg-gray-50 dark:bg-gray-700 dark:text-white  text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th scope="col" class="px-4 py-3 bg-gray-50 dark:bg-opacity-10 dark:text-white  text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                             time
                         </th>
                     </tr>
                 </thead>
-                <tbody class="bg-white dark:bg-gray-800 dark:text-white divide-y dark:divide-gray-800 divide-gray-200" wire:init='loadPosts'>
+                <tbody class="bg-white dark:bg-opacity-20 dark:text-white divide-y dark:divide-gray-800 divide-gray-200" wire:init='loadPosts'>
                     @forelse ($lists as $item)
                     <tr>
                         <td class="px-4 py-4 text-gray-500 dark:text-gray-300 text-center ">

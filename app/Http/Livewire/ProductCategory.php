@@ -17,11 +17,18 @@ class ProductCategory extends Component
     public $deleteName, $deleteID;
     public $no = 1;
     public $readyToLoad = false;
+    public $dataField = 'name';
+    public $dataOrder= 'asc' ;
+
+    //shorting
+    public function sortingField($field){
+        $this->dataField = $field;
+        $this->dataOrder = $this->dataOrder == 'asc' ? 'desc' : 'asc';
+    }
 
 
-
-    public function loadPosts()
-    {
+    //initdata
+    public function loadPosts(){
         if($this->categoryData()){
 
             return $this->readyToLoad = true;
@@ -66,8 +73,12 @@ class ProductCategory extends Component
             ]
         );
         $this->clearField();
-        $this->closeCreate();
+        $this->create();
 
+        //passing to toast
+        $message = 'Successfully adding category';
+        $type = 'success'; //error, success
+        $this->emit('toast',$message, $type);
     }
 
     //store update to db
@@ -81,6 +92,12 @@ class ProductCategory extends Component
                 'name' => $this->uName,
                 'updated_at' => Carbon::now()
                 ]);
+
+
+        //passing to toast
+        $message = 'Successfully updating category';
+        $type = 'success'; //error, success
+        $this->emit('toast',$message, $type);
         $this->closeUpdate();
         $this->clearField();
     }
@@ -102,15 +119,22 @@ class ProductCategory extends Component
         $this->deleter = true;
     }
 
+    //delete category
     public function deleting($deleteID){
 
         try {
             DB::table('products_category')->where('id', $deleteID)->delete();
+               //passing to toast
+            $message = 'Successfully deleting category';
+            $type = 'success'; //error, success
+            $this->emit('toast',$message, $type);
         } catch (\Throwable $th) {
+            //passing to toast
             $message = 'Cannot delete, Category has product records';
             $type = 'error'; //error, success
            $this->emit('toast',$message, $type);
         }
+
         $this->closeDelete();
     }
 
@@ -121,11 +145,7 @@ class ProductCategory extends Component
 
     }
     public function categoryData(){
-        try {
-          return  DB::table('products_category')->orderBy('id', 'desc')->paginate(10);
-        } catch (\Throwable $th) {
-          return [];
-        }
+        return  DB::table('products_category')->orderBy($this->dataField, $this->dataOrder)->paginate(10);
     }
     public function render()
     {

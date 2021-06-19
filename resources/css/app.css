@@ -1,3 +1,4 @@
+/* ./resources/css/app.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -68,3 +69,14 @@
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
     }
+
+    .selection-bg ::selection {
+        background-color: #79ffe1;
+    }
+
+    .dark .selection-bg ::selection {
+        background-color: #f81ce5;
+        color: white;
+    }
+
+
