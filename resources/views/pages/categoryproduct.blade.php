@@ -1,22 +1,24 @@
 @extends('layouts.app')
 
-
 @section('content')
 
-@include('etc.navbar')
-@include('etc.tab')
+    {{-- header component --}}
+    @include('component.header')
+    {{-- submenu component --}}
+    @include('component.submenu')
 
-<div class="sm:pt-8 pt-4  ">
-    <div class="grid grid-cols-12 ">
-        @include('etc.sidebar')
-
-        <livewire:product-category />
-
-    </div>
-</div>
-
-
-
-</div>
+    {{-- main component --}}
+    <main class="bg-white dark:bg-black ">
+        <div class="max-w-6xl px-6 mx-auto ">
+            <div class="sm:pt-8 pt-4 ">
+                <div class="grid grid-cols-12 ">
+                    {{-- component sidebar --}}
+                    @include('component.sidebar')
+                    {{-- livewire products component --}}
+                    <livewire:product-category />
+                </div>
+            </div>
+        </div>
+    </main>
 
 @endsection

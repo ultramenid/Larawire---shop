@@ -21,7 +21,7 @@
     <script src="{{ asset('js/app.js') }}" defer data-turbolinks-suppress-warning></script>
 </head>
 
-<body class="bg-gray-50 dark:bg-black selection-bg dark:selection-bg">
+<body class="dark:bg-black selection-bg dark:selection-bg">
 
 
     @yield('content')

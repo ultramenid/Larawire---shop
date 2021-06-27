@@ -21,7 +21,7 @@
             </div>
             <div class="px-6 mb-4 text-right">
                 <button wire:loading.remove wire:click="login" type="button" class=" inline-flex justify-center  sm:w-1/4 w-full rounded-md border border-transparent px-4 py-2 bg-gray-900 text-base leading-6 font-medium text-white shadow-sm hover:bg-white hover:text-black hover:border-black transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-                    Sign in
+                    Login
                 </button>
                 {{-- loading --}}
                 <button wire:loading wire:target='login' type="button" class=" inline-flex justify-center  sm:w-1/4 w-full rounded-md border border-transparent px-4 py-2 bg-gray-900 text-base leading-6 font-medium text-white shadow-sm transition ease-in-out duration-150 sm:text-sm sm:leading-5 cursor-not-allowed">

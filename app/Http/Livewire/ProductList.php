@@ -22,6 +22,7 @@ class ProductList extends Component
     public $dataField = 'name';
     public $dataOrder= 'asc' ;
 
+    //sorting filed function
     public function sortingField($field){
         $this->dataField = $field;
         $this->dataOrder = $this->dataOrder == 'asc' ? 'desc' : 'asc';
@@ -40,6 +41,8 @@ class ProductList extends Component
         ]);
     }
 
+
+    //redirect on create new category
     public function updatedcategory()
     {
         if($this->category == 'creating'){
@@ -47,6 +50,7 @@ class ProductList extends Component
         }
     }
 
+    //initialload
     public function loadPosts()
     {
         if ($this->productsData() && $this->categoryData()) {
@@ -84,6 +88,7 @@ class ProductList extends Component
         $this->discount=0;
 
     }
+
     public function edit($id){
         $data = DB::table('products')->where('id', $id)->first();
         $this->uName = $data->name;
@@ -167,6 +172,7 @@ class ProductList extends Component
 
     public function delete($id){
 
+        //load data to delete function
         $dataDelete = DB::table('products')->where('id', $id)->first();
         $this->deleteName = $dataDelete->name;
         $this->deleteID = $dataDelete->id;
@@ -180,7 +186,10 @@ class ProductList extends Component
     }
 
     public function deleting($deleteID){
+        //delete product from cart
         DB::table('carts')->where('product_id', $deleteID)->delete();
+
+        //validating on delete product and image
         try {
             unlink(storage_path('app/public/'.$this->deletePhoto));
             DB::table('products')->where('id', $deleteID)->delete();
@@ -213,8 +222,7 @@ class ProductList extends Component
         return DB::table('products_category')->get();
     }
 
-    public function render()
-    {
+    public function render(){
 
         $data= [
             'categories' => $this->readyToLoad ? $this->categoryData()  : [],

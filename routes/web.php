@@ -67,3 +67,4 @@ Route::get('/logout', function () {
     session()->flush();
     return redirect('/');
 });
+

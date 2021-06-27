@@ -5,10 +5,10 @@
     <livewire:toastr/>
 
     <div class="sm:text-left text-center">
-        <button wire:loading.remove wire:target='create' wire:click='create' class=" py-1 focus:outline-none border border-gray-300 hover:border-gray-600 text-gray-500  hover:text-gray-900  text-center rounded md:w-20 w-full  dark:text-gray-400 dark:border-gray-400">
+        <button wire:loading.remove wire:target='create' wire:click='create' class="  focus:outline-none border border-gray-300 hover:border-gray-600 text-gray-500  hover:text-gray-900  text-center rounded md:w-20 w-full  dark:text-gray-400 dark:border-gray-400">
             Add
         </button>
-        <button wire:loading wire:target='create' class=" py-1 focus:outline-none border border-gray-300 hover:border-gray-600 text-gray-500  hover:text-gray-900  text-center rounded md:w-20 w-full  dark:text-gray-400 dark:border-gray-400">
+        <button wire:loading wire:target='create' class="  focus:outline-none border border-gray-300 hover:border-gray-600 text-gray-500  hover:text-gray-900  text-center rounded md:w-20 w-full  dark:text-gray-400 dark:border-gray-400">
             Add. . .
         </button>
     </div>
@@ -50,15 +50,15 @@
                         <tbody class="bg-white divide-y divide-gray-200 dark:bg-opacity-20 dark:text-white dark:divide-gray-900" wire:init='loadPosts'>
                             @forelse ($category as $item)
                             <tr>
-                                <td class="px-4 py-4 whitespace-nowrap">
+                                <td class="px-4 py-3 whitespace-nowrap">
                                     <a class="text-gray-500 dark:text-gray-300">
                                         {{ $no++ }}
                                     </a>
                                 </td>
-                                <td class="px-4 py-4 whitespace-nowrap text-sm font-bold text-gray-500 dark:text-gray-100">
+                                <td class="px-4 py-3 whitespace-nowrap text-sm font-bold text-gray-500 dark:text-gray-100">
                                     {{ $item->name }}
                                 </td>
-                                <td class="px-2 py-4 break-words text-sm text-gray-500 dark:text-gray-300">
+                                <td class="px-2 py-3 break-words text-sm text-gray-500 dark:text-gray-300">
                                     <div class="relative ml-6 " x-data="{ open: false }">
                                         <button class="block focus:outline-none" @click="open = true">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -80,7 +80,7 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="3" class="whitespace-nowrap text-sm text-gray-500 dark:text-gray-300  px-6 py-4">
+                                <td colspan="3" class="whitespace-nowrap text-sm text-gray-500 dark:text-gray-300  px-6 py-3">
                                     No data found
                                 </td>
                             </tr>

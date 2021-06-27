@@ -11,7 +11,6 @@ class Toastr extends Component
 
     protected $listeners = ['toast' => 'showToast'] ;
 
-
     public function showToast($message, $type){
         $this->toast = true;
 

@@ -3,7 +3,7 @@
 
 @section('content')
 
-{{-- livewire component --}}
-<livewire:login-component />
+    {{-- livewire login component --}}
+    <livewire:login-component />
 
 @endsection

@@ -74,7 +74,7 @@
                     <span wire:model='grandtotal'>Rp {{number_format($sumTotal,0, ',' , '.')}}</span>
                 </div>
                 @unless (!$count)
-                <button wire:click='ceckFout' class=" rounded bg-black dark:bg-white dark:text-black dark:hover:bg-indigo-600 dark:hover:text-white font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Checkout</button>
+                <button wire:click='ceckFout' class=" rounded bg-black dark:bg-white text-white dark:text-black hover:text-black dark:hover:bg-black border border-black dark:border-white dark:hover:text-white font-semibold hover:bg-white py-3 text-sm  uppercase w-full">Checkout</button>
                 @endunless
             </div>
         </div>

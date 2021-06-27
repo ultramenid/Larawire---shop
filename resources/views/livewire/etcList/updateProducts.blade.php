@@ -48,9 +48,9 @@
                                 <label class="cursor-pointer">
                                     @if ($uphoto)
                                         @if ($photo)
-                                            <img src="{{$photo->temporaryUrl()}}" alt="" class="h-32 w-32 rounded ">
+                                            <img src="{{$photo->temporaryUrl()}}" alt="" class="h-32 mx-auto   rounded ">
                                         @else
-                                        <img src="{{ asset('/storage/'.$uphoto) }}" alt="" class="h-32 w-32 rounded ">
+                                        <img src="{{ asset('/storage/'.$uphoto) }}" alt="" class="h-32 mx-auto rorounded ">
                                         @endif
                                     @endif
 
