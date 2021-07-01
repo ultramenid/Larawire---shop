@@ -73,6 +73,9 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white dark:bg-opacity-20 dark:text-white divide-y divide-gray-200 dark:divide-gray-900" wire:init='loadPosts'>
+                            @if ($readyToLoad)
+                                @includeWhen($readyToLoad, 'livewire.etcList.skeletonTable')
+                            @else
                             @forelse ($products as $item)
                             <tr>
                                 <td class="px-4 py-3 break-words text-sm font-bold text-gray-500 dark:text-gray-100">
@@ -117,6 +120,7 @@
                                 </td>
                             </tr>
                             @endforelse
+                            @endif
                             <!-- More rows... -->
                         </tbody>
                     </table>

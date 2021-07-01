@@ -1,6 +1,8 @@
 <div class="mt-5 grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5 z-10" wire:init='loadFirst'>
-    @if ($products)
-        @foreach ($products as $product)
+    @if ($readyToLoad)
+       @includeWhen($readyToLoad, 'livewire.etcChoose.skeletonProduct')
+    @else
+    @forelse ($products as $product)
         <div class="w-full  bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
             <div class="relative pb-48 overflow-hidden">
                 <img class="absolute inset-0 h-full w-full object-cover" src="{{ url('/storage/'.$product->photo) }}" alt="">
@@ -35,9 +37,9 @@
                 </div>
             </div>
         </div>
-        @endforeach
-    @else
-        loading . .
+        @empty
+            Data not found
+        @endforelse
     @endif
 
 </div>

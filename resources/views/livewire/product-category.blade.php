@@ -48,6 +48,9 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200 dark:bg-opacity-20 dark:text-white dark:divide-gray-900" wire:init='loadPosts'>
+                            @if ($readyToLoad)
+                                @includeWhen($readyToLoad, 'livewire.etcCategory.skeletonTable')
+                            @else
                             @forelse ($category as $item)
                             <tr>
                                 <td class="px-4 py-3 whitespace-nowrap">
@@ -86,7 +89,7 @@
                             </tr>
 
                             @endforelse
-
+                            @endif
                             <!-- More rows... -->
                         </tbody>
                     </table>

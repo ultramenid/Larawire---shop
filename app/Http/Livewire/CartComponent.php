@@ -11,8 +11,8 @@ class CartComponent extends Component
     protected $listeners = [
         'cartAdded' => '$refresh',
     ];
-    public function render()
-    {
+
+    public function render(){
         $data = [
             'countCart' => DB::table('carts')
             ->where('user_id', session('id'))

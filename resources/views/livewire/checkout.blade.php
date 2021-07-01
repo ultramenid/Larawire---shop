@@ -1,16 +1,17 @@
-<div class="container mx-auto mt-10">
-    @if (session()->has('message'))
-    <div class="alert alert-success">
-        {{ session('message') }}
-    </div>
-    @endif
-
-    <div class="grid grid-cols-12 shadow-md my-10">
-        <div class="sm:col-span-9 col-span-12 bg-white px-10 py-10">
+<div class="grid grid-cols-12 shadow-md my-10">
+        @if (session()->has('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+        @endif
+        <div class="sm:col-span-9 col-span-12 bg-white px-10 py-10" wire:init='readyToload'>
             <div class="sm:flex grid grid-col-1 justify-between  pb-8">
                 <h1 class="font-semibold text-2xl">Shopping Cart</h1>
                 <h2 class="font-semibold text-2xl">{{$count}} Items</h2>
             </div>
+        @if ($isLoading)
+            @includeWhen($isLoading, 'livewire.etcCheckout.skeletonProduct')
+        @else
             @foreach ($carts as $cart)
             <div class="border-b-2 ">
                 <div class="space-y-4 py-8 ">
@@ -50,8 +51,7 @@
                 </div>
             </div>
             @endforeach
-
-
+        @endif
             <a href="{{ url('/dashboard') }}" class="flex font-semibold text-black text-sm mt-10">
 
                 <svg class="fill-current mr-2 text-black w-4" viewBox="0 0 448 512">
@@ -78,8 +78,5 @@
                 @endunless
             </div>
         </div>
-
     </div>
-
-</div>
 

@@ -18,9 +18,10 @@ class ProductList extends Component
     public $uphoto, $uName, $uPrice, $uQuantity, $uCategory, $uId, $uDiscount;
     public $deleteName, $deleteID, $deletePhoto;
     public $search = '' ;
-    public $readyToLoad;
+    public $readyToLoad = true;
     public $dataField = 'name';
     public $dataOrder= 'asc' ;
+    public $paginate = 5;
 
     //sorting filed function
     public function sortingField($field){
@@ -53,11 +54,9 @@ class ProductList extends Component
     //initialload
     public function loadPosts()
     {
-        if ($this->productsData() && $this->categoryData()) {
-            return $this->readyToLoad = true;
-
-        }
-        return $this->readyToLoad = false;
+        $this->categoryData();
+        $this->productsData();
+        $this->readyToLoad = false;
     }
 
     // modal create
@@ -212,7 +211,7 @@ class ProductList extends Component
            return DB::table('products')
                 ->where('name', 'like', $sc)
                 ->orderBy($this->dataField, $this->dataOrder)
-                ->paginate(5);
+                ->paginate($this->paginate);
         } catch (\Throwable $th) {
             return [];
         }
@@ -225,8 +224,8 @@ class ProductList extends Component
     public function render(){
 
         $data= [
-            'categories' => $this->readyToLoad ? $this->categoryData()  : [],
-            'products' => $this->readyToLoad ? $this->productsData() : []
+            'categories' =>  $this->categoryData()  ,
+            'products' => $this->productsData()
         ];
         return view('livewire.product-list', $data);
     }

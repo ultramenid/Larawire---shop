@@ -16,9 +16,10 @@ class ProductCategory extends Component
     public $name, $uName, $uId;
     public $deleteName, $deleteID;
     public $no = 1;
-    public $readyToLoad = false;
+    public $readyToLoad = true;
     public $dataField = 'name';
     public $dataOrder= 'asc' ;
+    public $paginate = 5;
 
     //shorting
     public function sortingField($field){
@@ -29,12 +30,8 @@ class ProductCategory extends Component
 
     //initdata
     public function loadPosts(){
-        if($this->categoryData()){
-
-            return $this->readyToLoad = true;
-        }
-
-        return $this->readyToLoad = false;
+        $this->categoryData();
+        $this->readyToLoad = false;
     }
 
     //modal insert
@@ -146,7 +143,7 @@ class ProductCategory extends Component
     }
     public function categoryData(){
         try {
-            return  DB::table('products_category')->orderBy($this->dataField, $this->dataOrder)->paginate(10);
+            return  DB::table('products_category')->orderBy($this->dataField, $this->dataOrder)->paginate($this->paginate);
         } catch (\Throwable $th) {
             return [];
         }
@@ -154,7 +151,7 @@ class ProductCategory extends Component
     public function render()
     {
         $data = [
-            'category' => $this->readyToLoad ? $this->categoryData()  : []
+            'category' => $this->categoryData()
         ];
         return view('livewire.product-category',$data);
     }

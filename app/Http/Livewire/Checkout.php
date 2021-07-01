@@ -8,12 +8,18 @@ use Livewire\Component;
 
 class Checkout extends Component
 {
+    public $isLoading = true;
 
     protected $listeners = [
         'removeItem' => '$refresh'
     ];
 
-    public function ceckFout(){
+    public function readyToload(){
+        $this->getCheckoutdata();
+        $this->isLoading = false;
+    }
+    public
+    function ceckFout(){
         DB::table('history_checkout')->insert([
             'user_id' => session('id'),
             'total' => $this->grandTotal(),
@@ -71,18 +77,21 @@ class Checkout extends Component
         $this->emitSelf('removeItem');
     }
 
-    public function render()
-    {
+    public function getCheckoutdata(){
+        return DB::table('carts')
+        ->where('user_id', session('id'))
+        ->join('products_category', 'carts.category_id', '=', 'products_category.id')
+        ->join('products', 'carts.product_id', '=', 'products.id')
+        ->select('products.*', 'products_category.name as category_name', 'carts.quantity', 'carts.total', 'carts.id as cart_id')
+        ->get();
+    }
+
+    public function render(){
         $data= [
-            'carts' => DB::table('carts')
-                ->where('user_id', session('id'))
-                ->join('products_category', 'carts.category_id', '=', 'products_category.id')
-                ->join('products', 'carts.product_id', '=', 'products.id')
-                ->select('products.*', 'products_category.name as category_name', 'carts.quantity', 'carts.total', 'carts.id as cart_id')
-                ->get(),
+            'carts' => $this->getCheckoutdata(),
             'count' => DB::table('carts')
-            ->where('user_id', session('id'))
-            ->sum('quantity'),
+                        ->where('user_id', session('id'))
+                        ->sum('quantity'),
             'sumTotal' => $this->grandTotal()
 
         ];

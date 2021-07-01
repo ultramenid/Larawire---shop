@@ -10,20 +10,29 @@ class ListTrans extends Component
 {
     use WithPagination;
     public $no = 1;
-    public $readyToLoad= false;
+    public $readyToLoad= true;
+    public $paginate = 10;
 
     public function loadPosts(){
-        $this->readyToLoad= true;
+        $this->loadTrans();
+        $this->readyToLoad= false;
+    }
+
+    public function loadTrans(){
+        try {
+            return DB::table('history_checkout')
+            ->join('users', 'history_checkout.user_id', '=' , 'users.id')
+            ->select('products.*','products_category.name as category_name')
+            ->select('history_checkout.*','users.name as user_name')
+            ->orderBy('id', 'desc')->paginate($this->paginate);
+         } catch (\Throwable $th) {
+             return [];
+         }
     }
     public function render()
     {
         $data=[
-            'lists' => $this->readyToLoad ? DB::table('history_checkout')
-                ->join('users', 'history_checkout.user_id', '=' , 'users.id')
-                ->select('products.*','products_category.name as category_name')
-                ->select('history_checkout.*','users.name as user_name')
-                ->orderBy('id', 'desc')->paginate(10)
-                : []
+            'lists' =>  $this->loadTrans()
         ];
         return view('livewire.list-trans',$data);
     }
