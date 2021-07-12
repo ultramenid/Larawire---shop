@@ -18,7 +18,6 @@ class ProductList extends Component
     public $uphoto, $uName, $uPrice, $uQuantity, $uCategory, $uId, $uDiscount;
     public $deleteName, $deleteID, $deletePhoto;
     public $search = '' ;
-    public $readyToLoad = true;
     public $dataField = 'name';
     public $dataOrder= 'asc' ;
     public $paginate = 5;
@@ -51,20 +50,16 @@ class ProductList extends Component
         }
     }
 
-    //initialload
-    public function loadPosts()
-    {
-        $this->categoryData();
-        $this->productsData();
-        $this->readyToLoad = false;
-    }
-
     // modal create
     public function create(){
-        $this->isCreating = !$this->isCreating;
+        $this->isCreating = true;
         $this->clearField();
     }
 
+    public function closeCreate(){
+        $this->isCreating = false;
+        $this->clearField();
+    }
 
 
     public function update(){
@@ -208,7 +203,7 @@ class ProductList extends Component
     public function productsData(){
         $sc = '%' . $this->search . '%';
         try {
-           return DB::table('products')
+            return DB::table('products')
                 ->where('name', 'like', $sc)
                 ->orderBy($this->dataField, $this->dataOrder)
                 ->paginate($this->paginate);

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html :class="{ dark }" x-data="data()" lang="en">
+<html class="" lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -19,16 +19,20 @@
 
     @livewireScripts
     <script src="{{ asset('js/app.js') }}" defer data-turbolinks-suppress-warning></script>
+    <script defer src="https://unpkg.com/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+    <script src="{{asset('js/dark.js')}}"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
 <body class="dark:bg-black selection-bg dark:selection-bg">
 
-
     @yield('content')
 
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-    <script src="{{asset('js/dark.js')}}"></script>
+
 </body>
+
+
+
 
 
 </html>

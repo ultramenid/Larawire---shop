@@ -22,10 +22,7 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white dark:bg-opacity-20 dark:text-white divide-y dark:divide-gray-800 divide-gray-200" wire:init='loadPosts'>
-                            @if ($readyToLoad)
-                                @includeWhen($readyToLoad, 'livewire.etcListtrans.skeletonTable')
-                            @else
+                        <tbody class="bg-white dark:bg-opacity-20 dark:text-white divide-y dark:divide-gray-800 divide-gray-200">
                                 @forelse ($lists as $item)
                                 <tr>
                                     <td class="px-4 py-3 text-gray-500 dark:text-gray-300  text-center">
@@ -49,7 +46,6 @@
                                 </tr>
 
                                 @endforelse
-                            @endif
                         </tbody>
                     </table>
             </div>

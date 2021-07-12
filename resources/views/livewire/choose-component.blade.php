@@ -1,11 +1,11 @@
-<div class="mt-5 grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5 z-10" wire:init='loadFirst'>
-    @if ($readyToLoad)
-       @includeWhen($readyToLoad, 'livewire.etcChoose.skeletonProduct')
-    @else
+<div class="mt-5 grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5 z-10" >
     @forelse ($products as $product)
-        <div class="w-full  bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
-            <div class="relative pb-48 overflow-hidden">
-                <img class="absolute inset-0 h-full w-full object-cover" src="{{ url('/storage/'.$product->photo) }}" alt="">
+    <div x-data="{ product: false }" x-intersect="product = true">
+        <div class="w-full  bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden"  x-show="product" x-transition>
+            <div class="relative pb-48 overflow-hidden" x-data="{ shown1: false }" x-intersect="shown1 = true">
+                <div x-show="shown1" x-transition>
+                    <img loading="lazy" class="absolute inset-0 h-full w-full object-cover" src="{{ url('/storage/'.$product->photo) }}" alt="">
+                </div>
             </div>
             <div class="p-4 ">
                 <div class="flex justify-between items-center mb-6">
@@ -37,9 +37,8 @@
                 </div>
             </div>
         </div>
+    </div>
         @empty
             Data not found
         @endforelse
-    @endif
-
 </div>

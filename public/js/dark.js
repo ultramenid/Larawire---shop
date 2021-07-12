@@ -1,26 +1,24 @@
-function data() {
-  function getThemeFromLocalStorage() {
-    // if user already changed the theme, use it
-    if (window.localStorage.getItem('dark')) {
-      return JSON.parse(window.localStorage.getItem('dark'))
-    }
+document.addEventListener('alpine:init', () => {
+    Alpine.data('ToggleDark', () => ({
+        darkMode: false,
 
-    // else return their preferences
-    return (
-      !!window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-    )
-  }
+        created() {
+            this.darkMode = JSON.parse(localStorage.getItem('darkMode'))
+            this.set()
+        },
 
-  function setThemeToLocalStorage(value) {
-    window.localStorage.setItem('dark', value)
-  }
+        toggle() {
+            this.darkMode = !this.darkMode
+            localStorage.setItem('darkMode', this.darkMode)
+            this.set()
+        },
 
-  return {
-    dark: getThemeFromLocalStorage(),
-    toggleTheme() {
-      this.dark = !this.dark
-      setThemeToLocalStorage(this.dark)
-    }
-  }
-}
+        set() {
+            if (this.darkMode) {
+                document.querySelector('html').classList.add('dark')
+                return
+            }
+            document.querySelector('html').classList.remove('dark')
+        }
+    }))
+})

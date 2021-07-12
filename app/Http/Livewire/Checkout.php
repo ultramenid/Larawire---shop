@@ -8,18 +8,12 @@ use Livewire\Component;
 
 class Checkout extends Component
 {
-    public $isLoading = true;
 
     protected $listeners = [
         'removeItem' => '$refresh'
     ];
 
-    public function readyToload(){
-        $this->getCheckoutdata();
-        $this->isLoading = false;
-    }
-    public
-    function ceckFout(){
+    public function ceckFout(){
         DB::table('history_checkout')->insert([
             'user_id' => session('id'),
             'total' => $this->grandTotal(),

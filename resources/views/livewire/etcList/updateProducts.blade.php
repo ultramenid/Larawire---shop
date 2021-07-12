@@ -1,4 +1,4 @@
-<div class="fixed z-20 inset-0 overflow-y-auto ease-out duration-400" x-show.transition="open" x-cloak style="display: none !important">
+<div class="fixed z-20 inset-0 overflow-y-auto ease-out duration-400"  x-show="open" x-transition x-cloak style="display: none !important">
     <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
         <div class="fixed inset-0 transition-opacity">
             <div class="absolute inset-0 bg-gray-200 dark:bg-black opacity-50"></div>
@@ -48,9 +48,19 @@
                                 <label class="cursor-pointer">
                                     @if ($uphoto)
                                         @if ($photo)
-                                            <img src="{{$photo->temporaryUrl()}}" alt="" class="h-32 mx-auto   rounded ">
+                                        <div x-data="{ shown: false }" x-intersect="shown = true">
+                                            <div x-show="shown" x-transition>
+                                                <img src="{{$photo->temporaryUrl()}}" alt="" class="h-32 mx-auto   rounded ">
+                                            </div>
+                                        </div>
+
                                         @else
-                                        <img src="{{ asset('/storage/'.$uphoto) }}" alt="" class="h-32 mx-auto rorounded ">
+                                        <div x-data="{ shown: false }" x-intersect="shown = true">
+                                            <div x-show="shown" x-transition>
+                                                <img src="{{ asset('/storage/'.$uphoto) }}" alt="" class="h-32 mx-auto rorounded ">
+                                            </div>
+                                        </div>
+
                                         @endif
                                     @endif
 

@@ -16,7 +16,6 @@ class ProductCategory extends Component
     public $name, $uName, $uId;
     public $deleteName, $deleteID;
     public $no = 1;
-    public $readyToLoad = true;
     public $dataField = 'name';
     public $dataOrder= 'asc' ;
     public $paginate = 5;
@@ -27,16 +26,14 @@ class ProductCategory extends Component
         $this->dataOrder = $this->dataOrder == 'asc' ? 'desc' : 'asc';
     }
 
-
-    //initdata
-    public function loadPosts(){
-        $this->categoryData();
-        $this->readyToLoad = false;
-    }
-
     //modal insert
     public function create(){
-        $this->isCreating = !$this->isCreating;
+        $this->isCreating = true;
+        $this->clearField();
+    }
+
+    public function closeCreatecategory(){
+        $this->isCreating = false;
         $this->clearField();
     }
 
@@ -69,8 +66,8 @@ class ProductCategory extends Component
             'created_at' => Carbon::now()
             ]
         );
-        $this->clearField();
-        $this->create();
+        $this->closeCreatecategory();
+
 
         //passing to toast
         $message = 'Successfully adding category';

@@ -10,13 +10,8 @@ class ListTrans extends Component
 {
     use WithPagination;
     public $no = 1;
-    public $readyToLoad= true;
     public $paginate = 10;
 
-    public function loadPosts(){
-        $this->loadTrans();
-        $this->readyToLoad= false;
-    }
 
     public function loadTrans(){
         try {

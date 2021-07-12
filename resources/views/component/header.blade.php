@@ -1,17 +1,10 @@
 <div class="bg-white dark:bg-black mb-2">
     <header class="max-w-6xl px-6 mx-auto pt-4 flex items-center justify-between">
         <div class="flex items-center space-x-3">
-           <a href="/#">
-            <template x-if="dark">
-                <svg class="h-6 dark:text-white" viewBox="0 0 116 100" fill="white" xmlns="http://www.w3.org/2000/svg">
+           <a href="/#" class="text-black drak:text-white">
+                <svg class="h-6 dark:text-white" viewBox="0 0 116 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M57.5 0L115 100H0L57.5 0z"></path>
                  </svg>
-            </template>
-            <template x-if="!dark">
-                <svg class="h-6 dark:text-white" viewBox="0 0 116 100" fill="black" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M57.5 0L115 100H0L57.5 0z"></path>
-                 </svg>
-            </template>
            </a>
            <span class="sm:block hidden">
               <svg viewBox="0 0 32 32" stroke="currentColor" class="h-8 w-8 text-gray-300 dark:text-gray-700">

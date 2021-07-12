@@ -47,49 +47,50 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white divide-y divide-gray-200 dark:bg-opacity-20 dark:text-white dark:divide-gray-900" wire:init='loadPosts'>
-                            @if ($readyToLoad)
-                                @includeWhen($readyToLoad, 'livewire.etcCategory.skeletonTable')
-                            @else
-                            @forelse ($category as $item)
-                            <tr>
-                                <td class="px-4 py-3 whitespace-nowrap">
-                                    <a class="text-gray-500 dark:text-gray-300">
-                                        {{ $no++ }}
-                                    </a>
-                                </td>
-                                <td class="px-4 py-3 whitespace-nowrap text-sm font-bold text-gray-500 dark:text-gray-100">
-                                    {{ $item->name }}
-                                </td>
-                                <td class="px-2 py-3 break-words text-sm text-gray-500 dark:text-gray-300">
-                                    <div class="relative ml-6 " x-data="{ open: false }">
-                                        <button class="block focus:outline-none" @click="open = true">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                                              </svg>
-                                        </button>
+                        <tbody class="bg-white divide-y divide-gray-200 dark:bg-opacity-20 dark:text-white dark:divide-gray-900" >
+                            <div x-data="{ shown: false }" x-intersect="shown = true">
+                                <div x-show="shown" x-transition>
+                                    @forelse ($category as $item)
+                                    <tr>
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            <a class="text-gray-500 dark:text-gray-300">
+                                                {{ $no++ }}
+                                            </a>
+                                        </td>
+                                        <td class="px-4 py-3 whitespace-nowrap text-sm font-bold text-gray-500 dark:text-gray-100">
+                                            {{ $item->name }}
+                                        </td>
+                                        <td class="px-2 py-3 break-words text-sm text-gray-500 dark:text-gray-300">
+                                            <div class="relative ml-6 " x-data="{ open: false }">
+                                                <button class="block focus:outline-none" @click="open = true">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                                                      </svg>
+                                                </button>
 
-                                        <ul
-                                            class="absolute mt-2 right-0 bg-white rounded-lg shadow-lg block w-24 z-10"
-                                            x-show.transition="open"
-                                            @click.away="open = false"
-                                            x-cloak style="display: none !important"
-                                        >
-                                          <li class="block hover:bg-gray-200 cursor-pointer py-1 mt-2 px-4 dark:text-gray-500" wire:click="edit({{ $item->id }})" @click.away="open = false">Edit</li>
-                                          <li class="block hover:bg-gray-200 cursor-pointer  py-1 mb-2 px-4 dark:text-gray-500" wire:click="delete({{ $item->id }})" @click.away="open = false">Delete</li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            @empty
-                            <tr>
-                                <td colspan="3" class="whitespace-nowrap text-sm text-gray-500 dark:text-gray-300  px-6 py-3">
-                                    No data found
-                                </td>
-                            </tr>
+                                                <ul
+                                                    class="absolute mt-2 right-0 bg-white rounded-lg shadow-lg block w-24 z-10"
+                                                    x-show.transition="open"
+                                                    @click.away="open = false"
+                                                    x-cloak style="display: none !important"
+                                                >
+                                                  <li class="block hover:bg-gray-200 cursor-pointer py-1 mt-2 px-4 dark:text-gray-500" wire:click="edit({{ $item->id }})" @click.away="open = false">Edit</li>
+                                                  <li class="block hover:bg-gray-200 cursor-pointer  py-1 mb-2 px-4 dark:text-gray-500" wire:click="delete({{ $item->id }})" @click.away="open = false">Delete</li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="3" class="whitespace-nowrap text-sm text-gray-500 dark:text-gray-300  px-6 py-3">
+                                            No data found
+                                        </td>
+                                    </tr>
 
-                            @endforelse
-                            @endif
+                                    @endforelse
+                                </div>
+                            </div>
+
                             <!-- More rows... -->
                         </tbody>
                     </table>

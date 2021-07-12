@@ -72,47 +72,49 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white dark:bg-opacity-20 dark:text-white divide-y divide-gray-200 dark:divide-gray-900" wire:init='loadPosts'>
-                            @if ($readyToLoad)
-                                @includeWhen($readyToLoad, 'livewire.etcList.skeletonTable')
-                            @else
+                        <tbody class="bg-white dark:bg-opacity-20 dark:text-white divide-y divide-gray-200 dark:divide-gray-900">
                             @forelse ($products as $item)
-                            <tr>
-                                <td class="px-4 py-3 break-words text-sm font-bold text-gray-500 dark:text-gray-100">
-                                    {{ $item->name }}
-                                </td>
-                                <td class="px-4 py-3 break-words text-sm  text-gray-500 dark:text-gray-300">
-                                    <a class="hidden sm:block">{{ $item->price }}</a>
-                                </td>
-                                <td class="px-4 py-3 break-words text-sm  text-gray-500 dark:text-gray-300 sm:text-left text-center ">
-                                    <a >{{ $item->quantity }}</a>
-                                </td>
-                                <td class="px-4 py-3 break-words text-sm  text-gray-500 dark:text-gray-300  ">
-                                    <a class="hidden sm:block">{{ $item->discount }} %</a>
-                                </td>
-                                <td class="px-4 py-3 break-words text-sm  text-gray-500 dark:text-gray-300 hidden sm:block">
-                                    <img src="{{ asset('storage/'.$item->photo) }}  " alt="" class="h-12 mx-auto ">
-                                </td>
-                                <td colspan="2" class=" break-words text-sm text-gray-500 dark:text-gray-300 ">
-                                    <div class="relative " x-data="{ open: false }">
+                            <div x-data="{ produkItem: false }" x-intersect="produkItem = true">
+                                <div x-show="produkItem" x-transition>
+                                    <tr>
+                                        <td class="px-4 py-3 break-words text-sm font-bold text-gray-500 dark:text-gray-100">
+                                            {{ $item->name }}
+                                        </td>
+                                        <td class="px-4 py-3 break-words text-sm  text-gray-500 dark:text-gray-300">
+                                            <a class="hidden sm:block">{{ $item->price }}</a>
+                                        </td>
+                                        <td class="px-4 py-3 break-words text-sm  text-gray-500 dark:text-gray-300 sm:text-left text-center ">
+                                            <a >{{ $item->quantity }}</a>
+                                        </td>
+                                        <td class="px-4 py-3 break-words text-sm  text-gray-500 dark:text-gray-300  ">
+                                            <a class="hidden sm:block">{{ $item->discount }} %</a>
+                                        </td>
+                                        <td class="px-4 py-3 break-words text-sm  text-gray-500 dark:text-gray-300 hidden sm:block" >
+                                            <img loading="lazy" src="{{ asset('storage/'.$item->photo) }}  " alt="" class="h-12 mx-auto ">
+                                        </td>
+                                        <td colspan="2" class=" break-words text-sm text-gray-500 dark:text-gray-300 ">
+                                            <div class="relative " x-data="{ open: false }">
 
-                                        <button class="block focus:outline-none text-center" @click="open = true">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                                              </svg>
-                                        </button>
+                                                <button class="block focus:outline-none text-center" @click="open = true">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                                                      </svg>
+                                                </button>
 
-                                        <ul
-                                            class="absolute mt-2 right-0 bg-white rounded-lg shadow-lg block w-24 z-10"
-                                            x-show.transition="open"
-                                            @click.away="open = false"
-                                            x-cloak style="display: none !important">
-                                            <li class="block hover:bg-gray-200 cursor-pointer py-1 mt-2 px-4 dark:text-gray-500" wire:click="edit({{ $item->id }})" @click.away="open = false">Edit</li>
-                                            <li class="block hover:bg-gray-200 cursor-pointer  py-1 mb-2 px-4 dark:text-gray-500" wire:click="delete({{ $item->id }})" @click.away="open = false">Delete</li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
+                                                <ul
+                                                    class="absolute mt-2 right-0 bg-white rounded-lg shadow-lg block w-24 z-10"
+                                                    x-show.transition="open"
+                                                    @click.away="open = false"
+                                                    x-cloak style="display: none !important">
+                                                    <li class="block hover:bg-gray-200 cursor-pointer py-1 mt-2 px-4 dark:text-gray-500" wire:click="edit({{ $item->id }})" @click.away="open = false">Edit</li>
+                                                    <li class="block hover:bg-gray-200 cursor-pointer  py-1 mb-2 px-4 dark:text-gray-500" wire:click="delete({{ $item->id }})" @click.away="open = false">Delete</li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </div>
+                            </div>
+
                             @empty
                             <tr>
                                 <td colspan="6" class="whitespace-nowrap text-sm text-gray-500 px-6 py-3">
@@ -120,7 +122,6 @@
                                 </td>
                             </tr>
                             @endforelse
-                            @endif
                             <!-- More rows... -->
                         </tbody>
                     </table>

@@ -9,7 +9,6 @@ use Livewire\Component;
 class ChooseComponent extends Component
 {
     public $search;
-    public $readyToLoad = true;
     public $paginate = 10;
 
 
@@ -31,11 +30,6 @@ class ChooseComponent extends Component
         ->delete();
 
         $this->emit('cartAdded');
-    }
-
-    public function loadFirst(){
-        $this->dataProducts();
-        $this->readyToLoad = false;
     }
 
     public function dataProducts(){
