@@ -15,7 +15,7 @@
                     <div class="flex space-x-4 items-center">
                         <div x-data="{ shown: false }" x-intersect="shown = true">
                             <div x-show="shown" x-transition>
-                                <img loading="lazy" src="{{ url('/storage/'.$cart->photo)}}" alt="{{$cart->name}}" class="w-16">
+                                <img loading="lazy" src="{{ url('/storage/thumbnail/'.$cart->photo)}}" alt="{{$cart->name}}" class="w-16">
                             </div>
                         </div>
                         <div class="">

@@ -57,7 +57,7 @@
                                         @else
                                         <div x-data="{ shown: false }" x-intersect="shown = true">
                                             <div x-show="shown" x-transition>
-                                                <img src="{{ asset('/storage/'.$uphoto) }}" alt="" class="h-32 mx-auto rorounded ">
+                                                <img src="{{ asset('/storage/thumbnail/'.$uphoto) }}" alt="" class="h-32 mx-auto rorounded ">
                                             </div>
                                         </div>
 

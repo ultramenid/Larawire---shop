@@ -3,8 +3,8 @@
 namespace App\Http\Livewire;
 
 use Carbon\Carbon;
+use Intervention\Image\ImageManager;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
@@ -33,7 +33,7 @@ class ProductList extends Component
     public function updatedPhoto($photo)
     {
         $extension = pathinfo($photo->getFilename(), PATHINFO_EXTENSION);
-        if (!in_array($extension, ['png', 'jpeg', 'bmp', 'gif','jpg'])) {
+        if (!in_array($extension, ['png', 'jpeg', 'bmp', 'gif','jpg','webp'])) {
             $this->reset('photo');
         }
         $this->validate([
@@ -95,6 +95,18 @@ class ProductList extends Component
         $this->update();
     }
 
+    public function uploadImage(){
+        $file = $this->photo->store('public');
+       $foto = $this->photo->hashName();
+
+       $manager = new ImageManager();
+
+       //http://image.intervention.io/api/fit
+       //crop the best fitting 1:1 ratio (200x200) and resize to 200x200 pixel
+       $image = $manager->make('storage/'.$foto)->fit(200);
+       $image->save('storage/thumbnail/'.$foto);
+       return $foto;
+    }
     //store data to db
     public function store(){
         $this->validate([
@@ -105,13 +117,12 @@ class ProductList extends Component
             'category' => 'required'
         ]);
 
-        $potoimg = $this->photo->store('images', 'public');
-
         DB::table('products')->insert([
             'name' => $this->name,
             'price' => $this->price,
             'quantity' => $this->quantity,
-            'photo' =>  $potoimg,
+            'photo' =>  $this->uploadImage(),
+            'photo' => $this->uploadImage(),
             'discount' => $this->discount,
             'category_id' => $this->category,
             'created_at' => Carbon::now()
@@ -121,7 +132,7 @@ class ProductList extends Component
         $message = 'Successfully adding product';
         $type = 'success'; //error, success
         $this->emit('toast',$message, $type);
-        $this->create();
+        $this->closeCreate();
     }
 
     public function storeUpdate($id){
@@ -136,11 +147,13 @@ class ProductList extends Component
             $potoimg = $this->uphoto;
         }else{
             try {
-                 unlink(storage_path('app/public/'.$this->uphoto));
-                 $potoimg = $this->photo->store('images', 'public');
+                unlink(storage_path('app/public/'.$this->uphoto));
+                 unlink(storage_path('app/public/thumbnail/'.$this->uphoto));
+                 $name=  $this->uploadImage();
             } catch (\Throwable $th) {
-                $potoimg = $this->photo->store('images', 'public');
+               $name=  $this->uploadImage();
             }
+
         }
         DB::table('products')
             ->where('id', $id)
@@ -150,7 +163,8 @@ class ProductList extends Component
             'quantity' => $this->uQuantity,
             'category_id' => $this->uCategory,
             'discount' => $this->uDiscount,
-            'photo' => $potoimg,
+            'photo' => $name,
+            'photo' => $name,
             'updated_at' => Carbon::now()
             ]);
 
@@ -186,6 +200,7 @@ class ProductList extends Component
         //validating on delete product and image
         try {
             unlink(storage_path('app/public/'.$this->deletePhoto));
+            unlink(storage_path('app/public/thumbnail/'.$this->deletePhoto));
             DB::table('products')->where('id', $deleteID)->delete();
        } catch (\Throwable $th) {
             DB::table('products')->where('id', $deleteID)->delete();

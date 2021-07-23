@@ -39,6 +39,6 @@
         </div>
     </div>
         @empty
-            Data not found
+            <h1 class=" text-xxl dark:text-white text-black">No Data Found</h1>
         @endforelse
 </div>
