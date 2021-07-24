@@ -12,10 +12,12 @@
         <div class="max-w-6xl px-6 mx-auto ">
             <div class="sm:pt-8 pt-4 ">
                 <div class="grid grid-cols-12 ">
-                    {{-- component sidebar --}}
-                    @include('component.sidebar')
-                    {{-- livewire products component --}}
-                    <livewire:product-list />
+                    <ul class=" sm:space-y-3  space-y-0 sm:space-x-0 mb-6 space-x-3 sm:col-span-2 col-span-12 subpixel-antialiased sm:flex sm:flex-col flex flex-row ">
+                        @include('component.sidebarProducts')
+                    </ul>
+                    <div class="sm:col-span-10 col-span-12 space-y-1">
+                        <livewire:product-list />
+                    </div>
                 </div>
             </div>
         </div>

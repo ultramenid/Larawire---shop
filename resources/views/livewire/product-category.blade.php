@@ -1,4 +1,4 @@
-<div class="sm:col-span-10 col-span-12 space-y-1">
+<div >
 <h1 class="text-gray-900 font-bold text-2xl mb-2 dark:text-gray-100">Product Category</h1>
 
     {{-- Toast component --}}

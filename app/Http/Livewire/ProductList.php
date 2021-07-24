@@ -122,7 +122,6 @@ class ProductList extends Component
             'price' => $this->price,
             'quantity' => $this->quantity,
             'photo' =>  $this->uploadImage(),
-            'photo' => $this->uploadImage(),
             'discount' => $this->discount,
             'category_id' => $this->category,
             'created_at' => Carbon::now()

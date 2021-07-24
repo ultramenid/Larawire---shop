@@ -18,7 +18,6 @@
 
         {{-- // responsive > sm --}}
         <div class=" sm:flex items-center space-x-5 hidden">
-            @include('component.toogle-theme')
 
             @if (session('role_id') == 2)
                 <div class="">
@@ -26,7 +25,7 @@
                 </div>
             @endif
 
-           <a href="{{url('/logout')}}" class="inline-block text-sm leading-5 text-gray-500  hover:text-black dark:hover:text-white transition ease-in-out duration-150">Logout</a>
+            @include('component.toogle-theme')
         </div>
 
         {{-- //resposive mobile --}}
@@ -39,7 +38,7 @@
                 </div>
             @endif
 
-            @include('component.mobile-navbar')
+            {{-- @include('component.mobile-navbar') --}}
         </div>
      </header>
 

@@ -50,6 +50,14 @@ Route::group(['middleware' => 'cekSession'], function () {
             'tabs' => 'none'
         ]);
     });
+
+    Route::get('/settings', function () {
+        return view('pages.settings', [
+            'title' => 'Settings Page',
+            'tabs' => 'settings',
+            'sub_tabs' => 'general'
+        ]);
+    });
 });
 
 //route hase session

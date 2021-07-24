@@ -2,6 +2,7 @@
 <html class="" lang="en">
 
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="black">
@@ -20,8 +21,8 @@
     @livewireScripts
     <script src="{{ asset('js/app.js') }}" defer data-turbolinks-suppress-warning></script>
     <script defer src="https://unpkg.com/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
-    <script src="{{asset('js/dark.js')}}"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="{{asset('js/dark.js')}}"></script>
 </head>
 
 <body class="dark:bg-black selection-bg dark:selection-bg">
