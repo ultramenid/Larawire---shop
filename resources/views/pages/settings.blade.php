@@ -24,7 +24,7 @@
                             <div class="px-6 py-6 grid grid-cols-1 lg:grid-cols-3 gap-y-6 ">
                                 <div class="text-center">
                                     <button onclick="toSystemMode()" class="relative border-gray-200 dark:border-opacity-20 border rounded">
-                                        <img src="{{asset('system.svg')}}" alt="" class=" rounded w-full md:w-53">
+                                        <img src="{{asset('system.png')}}" alt="" class=" rounded w-full md:w-53">
                                     </button>
                                     <p class="text-sm font-light dark:text-white text-black">System Theme</p>
                                 </div>
